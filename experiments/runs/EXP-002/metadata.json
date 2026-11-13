@@ -1,0 +1,20 @@
+{
+    "experiment_id": "EXP-002",
+    "experiment_name": "GPT-OSS Model Benchmark",
+    "created_at": "2026-11-13T14:16:55.074401+00:00",
+    "status": "completed",
+    "models_evaluated": [
+        "openai/gpt-oss-20b",
+        "openai/gpt-oss-120b"
+    ],
+    "dataset_size": 20,
+    "evaluation_metrics": [
+        "token_f1_score",
+        "semantic_similarity",
+        "llm_judge",
+        "latency",
+        "token_usage"
+    ],
+    "comparison_report": "model_comparison.csv",
+    "config_file": "EXP-002_config.json"
+}

@@ -1,0 +1,1294 @@
+id,question,expected_answer,actual_response,token_f1_score,semantic_score,judge_score,judge_verdict,judge_reason,latency_seconds,prompt_tokens,completion_tokens,model_name,factuality_score,factuality_verdict,supported_claims,unsupported_claims,incorrect_claims,explanation
+1,What is Python?,"Python is a high-level, interpreted programming language.","Python is a high‑level, general‑purpose programming language that emphasizes readability and simplicity. It was created by Guido van Rossum and first released in 1991. Key features include:
+
+- **Interpreted** – code runs line‑by‑line, which speeds up development and debugging.
+- **Dynamic typing** – you don’t need to declare variable types explicitly.
+- **Extensive standard library** – ready‑made modules for everything from file I/O to networking.
+- **Cross‑platform** – runs on Windows, macOS, Linux, and many other systems.
+- **Versatile** – used for web development, data science, machine learning, automation, scripting, scientific computing, and more.
+
+Python’s syntax is designed to be clear and concise, making it a popular choice for beginners and professionals alike.",0.1333333333333333,0.8106,5,PASS,"The answer correctly states that Python is a high‑level, interpreted programming language and adds accurate additional details such as its general‑purpose nature, readability, creator, release date, and key features. It is fully relevant and covers the expected content and more.",0.5571,87.0,218.0,openai/gpt-oss-20b,5,supported,"['high-level', 'interpreted']","['general-purpose', 'emphasizes readability and simplicity', 'created by Guido van Rossum', 'first released in 1991', 'dynamic typing', 'extensive standard library', 'cross-platform', 'versatile', 'syntax is clear and concise']",[],The actual answer contains all the facts stated in the reference (Python is high‑level and interpreted) and adds additional correct information that is not contradicted by the reference. Therefore the answer is fully consistent with the reference.
+2,What is a Python list?,"A list is an ordered, mutable collection of elements.","A **Python list** is one of the most fundamental and versatile data structures in the Python language. It is an ordered, mutable collection of items that can hold elements of any type (integers, strings, other lists, objects, etc.). Because of its flexibility, lists are used for everything from simple data storage to complex algorithmic work.
+
+---
+
+## Key Characteristics
+
+| Feature | Description |
+|---------|-------------|
+| **Ordered** | Elements keep the order in which they were added. Indexing starts at 0. |
+| **Mutable** | You can change, add, or remove elements after the list is created. |
+| **Dynamic** | The list automatically resizes as you add or remove items. |
+| **Heterogeneous** | A single list can contain items of different types. |
+| **Indexable & Sliceable** | You can access elements by index or slice a range of elements. |
+| **Iterable** | You can loop over a list with `for`, `while`, comprehensions, etc. |
+
+---
+
+## Basic Syntax
+
+```python
+# Empty list
+empty = []
+
+# List with mixed types
+mixed = [1, ""two"", 3.0, [4, 5], {""six"": 6}]
+
+# List of integers
+numbers = [10, 20, 30, 40, 50]
+```
+
+---
+
+## Common Operations
+
+| Operation | Example | Result |
+|-----------|---------|--------|
+| **Access by index** | `numbers[2]` | `30` |
+| **Negative index** | `numbers[-1]` | `50` |
+| **Slicing** | `numbers[1:4]` | `[20, 30, 40]` |
+| **Length** | `len(numbers)` | `5` |
+| **Append** | `numbers.append(60)` | `numbers` becomes `[10, 20, 30, 40, 50, 60]` |
+| **Insert** | `numbers.insert(2, 25)` | `[10, 20, 25, 30, 40, 50, 60]` |
+| **Remove by value** | `numbers.remove(30)` | `[10, 20, 25, 40, 50, 60]` |
+| **Pop (by index)** | `numbers.pop(3)` | `40` (list now `[10, 20, 25, 50, 60]`) |
+| **Delete slice** | `del numbers[1:3]` | `[10, 50, 60]` |
+| **Sort** | `numbers.sort()` | `[10, 50, 60]` |
+| **Reverse** | `numbers.reverse()` | `[60, 50, 10]` |
+| **Copy** | `copy = numbers[:]` | `copy` is a shallow copy of `numbers` |
+
+---
+
+## List Comprehensions
+
+A concise way to create lists:
+
+```python
+squares = [x**2 for x in range(1, 6)]  # [1, 4, 9, 16, 25]
+```
+
+You can also add conditions:
+
+```python
+evens = [x for x in range(10) if x % 2 == 0]  # [0, 2, 4, 6, 8]
+```
+
+---
+
+## Nested Lists
+
+Lists can contain other lists, enabling multi‑dimensional structures:
+
+```python
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Access element at row 2, column 3
+value = matrix[1][2]  # 6
+```
+
+---
+
+## Common Use Cases
+
+| Scenario | Why a list is useful |
+|----------|----------------------|
+| **Collecting user input** | Easy to append as data comes in. |
+| **Storing records** | Each record can be a list or a dict. |
+| **Algorithmic work** | Lists support slicing, indexing, and built‑in methods. |
+| **Queue/stack** | `append()`/`pop()` for stack; `insert(0, ...)`/`pop(0)` for queue (though `collections.deque` is faster). |
+| **Data transformation** | List comprehensions and `map()`/`filter()` work naturally. |
+
+---
+
+## Performance Notes
+
+- **Appending** is amortized O(1).  
+- **Indexing** is O(1).  
+- **Insertion/Deletion** at the end is O(1); at the beginning or middle is O(n).  
+- For large queues or stacks, consider `collections.deque` for O(1) pops from both ends.
+
+---
+
+## Quick Reference
+
+```python
+# Create
+lst = [1, 2, 3]
+
+# Access
+first = lst[0]
+last = lst[-1]
+
+# Modify
+lst[1] = 20
+lst.append(4)
+lst.insert(0, 0)
+
+# Remove
+lst.remove(20)   # by value
+popped = lst.pop()  # by index (default last)
+
+# Slice
+sub = lst[1:3]
+
+# Iterate
+for item in lst:
+    print(item)
+
+# Comprehension
+squared = [x*x for x in lst]
+
+# Copy
+copy = lst[:]   # shallow copy
+```
+
+---
+
+### TL;DR
+
+A Python list is a flexible, ordered, mutable container that can hold any type of object. It supports indexing, slicing, and a rich set of methods for manipulation, making it a go‑to structure for most everyday programming tasks.",0.031578947368421,0.562,5,PASS,"The answer correctly states that a Python list is an ordered, mutable collection of elements, matching the expected definition. It also provides accurate additional details, examples, and explanations, all of which are relevant and factually correct. No incorrect information is present.",1.572,89.0,1243.0,openai/gpt-oss-20b,5,supported,"['A list is an ordered collection of elements.', 'A list is a mutable collection of elements.', 'A list can hold elements of any type.', 'A list is dynamic and resizes automatically.', 'A list is indexable and sliceable.', 'A list is iterable.']",[],[],"All statements in the actual answer are consistent with the reference definition of a list as an ordered, mutable collection of elements. The additional details about Python lists (heterogeneous contents, dynamic resizing, methods, performance notes, etc.) are valid extensions that do not contradict the reference."
+3,What is a dictionary in Python?,A dictionary stores data as key-value pairs.,"A **dictionary** in Python is a built‑in, mutable data structure that stores **key–value pairs**. Think of it as a real‑world dictionary: you look up a word (the key) and get its definition (the value). In Python, the keys must be hashable (e.g., strings, numbers, tuples of immutables), and the values can be any Python object.
+
+### Basic characteristics
+
+| Feature | Description |
+|---------|-------------|
+| **Mutable** | You can add, modify, or delete items after creation. |
+| **Unordered (Python < 3.7)** | Prior to 3.7 the order of items was not guaranteed. From 3.7 onward, insertion order is preserved as an implementation detail, and from 3.8 it’s a language guarantee. |
+| **Hash‑based** | Internally uses a hash table for fast look‑ups (average‑case O(1)). |
+| **No duplicate keys** | Each key must be unique; adding a key that already exists overwrites its value. |
+| **Dynamic resizing** | Automatically grows or shrinks as items are added or removed. |
+
+### Syntax
+
+```python
+# Empty dictionary
+d = {}
+
+# Dictionary with initial items
+d = {
+    ""name"": ""Alice"",
+    ""age"": 30,
+    ""hobbies"": [""reading"", ""cycling""]
+}
+```
+
+### Common operations
+
+| Operation | Code | Description |
+|-----------|------|-------------|
+| **Access value** | `d[""name""]` | Retrieves the value for key `""name""`. Raises `KeyError` if key missing. |
+| **Safe access** | `d.get(""name"")` | Returns value or `None` (or a default you provide) if key missing. |
+| **Add/modify** | `d[""city""] = ""NYC""` | Adds new key or updates existing one. |
+| **Delete** | `del d[""age""]` | Removes key‑value pair. |
+| **Check existence** | `""name"" in d` | Returns `True` if key present. |
+| **Iterate keys** | `for key in d:` | Loops over keys. |
+| **Iterate values** | `for value in d.values():` | Loops over values. |
+| **Iterate items** | `for key, value in d.items():` | Loops over key‑value pairs. |
+| **Length** | `len(d)` | Number of key‑value pairs. |
+| **Clear** | `d.clear()` | Removes all items. |
+| **Copy** | `d_copy = d.copy()` | Shallow copy. |
+
+### Example: Counting word frequencies
+
+```python
+text = ""hello world hello python""
+freq = {}
+
+for word in text.split():
+    freq[word] = freq.get(word, 0) + 1
+
+print(freq)  # {'hello': 2, 'world': 1, 'python': 1}
+```
+
+### Dictionary comprehensions
+
+Just like list comprehensions, you can build dictionaries concisely:
+
+```python
+squares = {x: x*x for x in range(5)}
+# {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+```
+
+### Nested dictionaries
+
+Dictionaries can contain other dictionaries, enabling complex data structures:
+
+```python
+students = {
+    ""alice"": {""age"": 20, ""major"": ""CS""},
+    ""bob"":   {""age"": 22, ""major"": ""Math""}
+}
+```
+
+### When to use a dictionary
+
+- **Fast look‑ups** by a unique key (e.g., user ID → user data).
+- **Associative arrays** where the key is more meaningful than an integer index.
+- **Representing JSON objects** or other key‑value data formats.
+- **Counting or grouping** items (as in the word‑frequency example).
+
+### Summary
+
+A Python dictionary is a versatile, hash‑based container that lets you map unique keys to arbitrary values, providing fast access and a rich set of operations for manipulation and traversal. It’s one of the core data structures in Python and is used extensively in everyday programming.",0.0333333333333333,0.6326,5,PASS,"The answer correctly states that a dictionary stores data as key–value pairs, matches the expected answer, and provides additional accurate details without irrelevant content.",1.2132,90.0,930.0,openai/gpt-oss-20b,5,supported,['A dictionary stores data as key-value pairs.'],"['A dictionary in Python is a built‑in, mutable data structure.', 'Keys must be hashable (e.g., strings, numbers, tuples of immutables).', 'Values can be any Python object.', 'Dictionaries are unordered prior to Python 3.7 and preserve insertion order from 3.7 onward.', 'Internally uses a hash table for fast look‑ups (average‑case O(1)).', 'No duplicate keys; adding an existing key overwrites its value.', 'Automatically resizes as items are added or removed.', 'Examples of syntax and common operations such as accessing, adding, deleting, checking existence, iterating, length, clearing, and copying.', 'Examples of dictionary comprehensions and nested dictionaries.', 'Typical use cases like fast look‑ups, associative arrays, representing JSON objects, and counting or grouping items.']",[],"The reference answer only states that a dictionary stores data as key-value pairs. The actual answer expands on this with accurate, additional details that are not contradicted by the reference. All extra claims are unsupported by the reference but are factually correct, so the answer is fully consistent with the reference."
+4,What is the difference between a list and a tuple?,Lists are mutable while tuples are immutable.,"### Short answer  
+- **List** (`[]`) – *mutable* sequence.  
+- **Tuple** (`()`) – *immutable* sequence.
+
+---
+
+## 1. Mutability
+
+| Feature | List | Tuple |
+|---------|------|-------|
+| Can you change an element after creation? | **Yes** – `lst[0] = 10` | **No** – raises `TypeError` |
+| Can you add or remove elements? | **Yes** – `append`, `extend`, `pop`, `remove`, `insert`, `clear` | **No** – you can only create a new tuple |
+| Can you slice and assign to a slice? | **Yes** – `lst[1:3] = [7, 8]` | **No** – `TypeError` |
+
+Because tuples are immutable, they can be used as keys in dictionaries or elements of sets (provided all their elements are hashable).
+
+---
+
+## 2. Syntax
+
+```python
+my_list  = [1, 2, 3]
+my_tuple = (1, 2, 3)
+```
+
+- Empty list: `[]`  
+- Empty tuple: `()` (or `tuple()`)
+
+---
+
+## 3. Methods
+
+| List methods | Tuple methods |
+|--------------|---------------|
+| `append`, `extend`, `insert`, `remove`, `pop`, `clear`, `sort`, `reverse`, `copy`, `index`, `count`, `__iadd__`, `__imul__` | `count`, `index` |
+
+Tuples have almost no mutating methods because they cannot change.
+
+---
+
+## 4. Performance & Memory
+
+| Aspect | List | Tuple |
+|--------|------|-------|
+| Memory usage | Slightly higher (dynamic array overhead) | Lower (fixed size, no resize overhead) |
+| Iteration speed | Slightly slower | Slightly faster |
+| Creation time | Slightly slower (needs to allocate a resizable buffer) | Slightly faster |
+
+In practice, the difference is usually negligible unless you are creating millions of objects.
+
+---
+
+## 5. Use‑case guidelines
+
+| When to use a **list** | When to use a **tuple** |
+|------------------------|------------------------|
+| You need to modify the collection (add, remove, reorder). | The collection is fixed after creation. |
+| You need list methods (`append`, `sort`, etc.). | You need an immutable, hashable sequence (e.g., dictionary key). |
+| You’re building a collection incrementally. | You’re returning multiple values from a function. |
+| You want to use the collection in a context that requires mutability (e.g., `*args` can be a list if you want to modify it). | You want to guarantee that the data won’t change (e.g., coordinates, RGB values). |
+
+---
+
+## 6. Practical examples
+
+```python
+# List – mutable
+numbers = [1, 2, 3]
+numbers.append(4)          # [1, 2, 3, 4]
+numbers[0] = 10            # [10, 2, 3, 4]
+
+# Tuple – immutable
+point = (3, 5)
+# point[0] = 10          # TypeError
+
+# Tuple as a dictionary key
+coords = {(0, 0): ""origin"", (1, 1): ""diagonal""}
+
+# Returning multiple values
+def min_max(seq):
+    return min(seq), max(seq)   # returns a tuple
+
+mn, mx = min_max([5, 2, 9])     # mn=2, mx=9
+```
+
+---
+
+## 7. Type hints (PEP 484)
+
+```python
+from typing import List, Tuple
+
+def process(values: List[int]) -> Tuple[int, int]:
+    return min(values), max(values)
+```
+
+- `List[int]` indicates a mutable list of integers.  
+- `Tuple[int, int]` indicates an immutable pair of integers.
+
+---
+
+## 8. Summary
+
+| Feature | List | Tuple |
+|---------|------|-------|
+| Mutability | Mutable | Immutable |
+| Syntax | `[]` | `()` |
+| Typical use | Dynamic collections, data that changes | Fixed collections, keys, return values |
+| Methods | Many mutating methods | Only `count`, `index` |
+| Memory | Slightly higher | Lower |
+| Hashable | No (unless subclassed) | Yes (if elements hashable) |
+
+Choosing between them is usually a matter of intent: if you need to change the sequence, use a list; if the sequence is fixed and you want the safety and performance benefits of",0.0210526315789473,0.6177,5,PASS,"The answer correctly states that lists are mutable and tuples are immutable, which matches the expected answer. It also provides additional correct information about syntax, methods, performance, and use cases, all of which are relevant and accurate. No incorrect statements are present. The answer fully satisfies the expected answer and adds valuable context.",2.6461,94.0,2048.0,openai/gpt-oss-20b,5,supported,['Lists are mutable while tuples are immutable.'],[],[],"The actual answer expands on the reference by providing additional details about mutability, syntax, methods, performance, and use cases, all of which are consistent with the reference statement that lists are mutable and tuples are immutable. No claim in the actual answer contradicts the reference."
+5,What does len() do in Python?,It returns the number of items in an object.,"`len()` is a built‑in Python function that returns the **length** (or size) of an object.  
+In practice it tells you how many items an object contains.
+
+### How it works
+- `len(obj)` calls the object's `__len__()` method.
+- The method must return a non‑negative integer.
+- If the object does not implement `__len__`, Python raises a `TypeError`.
+
+### Common objects that support `len()`
+
+| Object | What `len()` returns | Example |
+|--------|---------------------|---------|
+| **String** | Number of characters | `len(""hello"")` → `5` |
+| **List / Tuple / Set** | Number of elements | `len([1, 2, 3])` → `3` |
+| **Dictionary** | Number of key/value pairs | `len({'a': 1, 'b': 2})` → `2` |
+| **Bytes / bytearray** | Number of bytes | `len(b'\x00\x01')` → `2` |
+| **Custom classes** | Whatever you define in `__len__` | `class Counter: ...` |
+
+### Example
+
+```python
+s = ""Python""
+print(len(s))          # 6
+
+lst = [10, 20, 30]
+print(len(lst))        # 3
+
+d = {'x': 1, 'y': 2, 'z': 3}
+print(len(d))          # 3
+```
+
+### Custom implementation
+
+```python
+class MyCollection:
+    def __init__(self, items):
+        self.items = items
+
+    def __len__(self):
+        return len(self.items)
+
+c = MyCollection([1, 2, 3, 4])
+print(len(c))          # 4
+```
+
+### Things to remember
+
+- `len()` only works on objects that define `__len__`.  
+- It does **not** count the number of elements in nested structures; it only counts the top‑level items.  
+- For iterators or generators, `len()` is not defined because they may not have a known size.
+
+In short, `len()` is a quick, uniform way to ask “how many items does this object contain?”",0.074074074074074,0.5344,5,PASS,"The answer correctly states that len() returns the number of items in an object, explains its mechanism, lists supported types, and provides examples—all relevant and fully covering the expected answer.",0.8284,91.0,535.0,openai/gpt-oss-20b,5,supported,"['len() returns the number of items in an object', 'len() tells you how many items an object contains', ""len() calls the object's __len__() method"", 'the method must return a non‑negative integer', 'Python raises a TypeError if the object does not implement __len__', 'len() works on strings, lists, tuples, sets, dictionaries, bytes, bytearray, and custom classes that define __len__', 'len() does not count nested elements and is not defined for iterators or generators']",[],[],"The actual answer expands on the reference by providing additional correct details about how len() works, what objects it supports, and its behavior with custom classes and iterators. All claims are factually accurate and consistent with the reference statement that len() returns the number of items in an object."
+6,What is machine learning?,Machine learning enables computers to learn patterns from data.,"**Machine learning (ML)** is a branch of artificial intelligence that focuses on building systems that can learn from data, identify patterns, and make decisions or predictions with minimal human intervention.
+
+---
+
+### Core Idea
+- **Learning from data**: Instead of being explicitly programmed for every task, an ML model is trained on examples (input–output pairs) and learns to generalize to new, unseen data.
+- **Model**: A mathematical function or algorithm that maps inputs to outputs.
+- **Training**: The process of adjusting the model’s internal parameters so that its predictions match the training data as closely as possible.
+- **Evaluation**: Measuring how well the trained model performs on new data (validation/test sets).
+
+---
+
+### Key Components
+
+| Component | What it is | Example |
+|-----------|------------|---------|
+| **Data** | The raw information used for training. | Images, text, sensor readings, transaction logs. |
+| **Features** | Representations of the data that the model uses. | Pixel values, word embeddings, engineered statistics. |
+| **Algorithm** | The procedure that learns from data. | Decision trees, neural networks, support vector machines. |
+| **Loss function** | Quantifies the error between predictions and true values. | Mean squared error, cross‑entropy. |
+| **Optimizer** | Adjusts model parameters to minimize loss. | Gradient descent, Adam. |
+| **Evaluation metrics** | Measures performance. | Accuracy, precision, recall, F1‑score, ROC‑AUC. |
+
+---
+
+### Types of Machine Learning
+
+| Type | How it works | Typical use‑cases |
+|------|--------------|-------------------|
+| **Supervised learning** | Learns a mapping from inputs to known outputs. | Image classification, spam detection, regression. |
+| **Unsupervised learning** | Finds structure in unlabeled data. | Clustering, dimensionality reduction, anomaly detection. |
+| **Semi‑supervised learning** | Combines a small amount of labeled data with a large amount of unlabeled data. | Speech recognition, medical imaging. |
+| **Reinforcement learning** | Learns by interacting with an environment and receiving rewards. | Game playing, robotics, recommendation systems. |
+| **Self‑supervised learning** | Generates its own labels from the data. | Pretraining language models (e.g., BERT, GPT). |
+
+---
+
+### Typical Workflow
+
+1. **Problem definition** – Identify the goal (classification, regression, etc.).
+2. **Data collection & preprocessing** – Gather, clean, and transform data.
+3. **Feature engineering / representation learning** – Create useful inputs.
+4. **Model selection** – Choose an algorithm suited to the task.
+5. **Training** – Fit the model to the data.
+6. **Evaluation** – Test on unseen data; tune hyperparameters.
+7. **Deployment** – Integrate the model into a production system.
+8. **Monitoring & maintenance** – Track performance, retrain as needed.
+
+---
+
+### Real‑World Examples
+
+| Domain | Application |
+|--------|-------------|
+| **Healthcare** | Predicting disease risk, medical image analysis. |
+| **Finance** | Credit scoring, fraud detection, algorithmic trading. |
+| **Retail** | Recommendation engines, demand forecasting. |
+| **Transportation** | Autonomous driving, route optimization. |
+| **Natural Language Processing** | Chatbots, translation, sentiment analysis. |
+| **Computer Vision** | Object detection, facial recognition, image generation. |
+
+---
+
+### Why It Matters
+
+- **Automation**: ML can handle tasks that are too complex or time‑consuming for humans.
+- **Scalability**: Models can process massive datasets far beyond human capacity.
+- **Adaptability**: Models can improve over time as more data becomes available.
+- **Insight**: ML can uncover hidden patterns and relationships in data.
+
+---
+
+### Quick Takeaway
+
+Machine learning is the science of teaching computers to learn from data, enabling them to perform tasks—like recognizing images, translating languages, or predicting stock prices—without being explicitly programmed for each specific instance.",0.0324543610547667,0.538,5,PASS,"The answer accurately describes machine learning as enabling computers to learn patterns from data, providing a comprehensive, factually correct explanation that fully covers the expected answer.",1.151,88.0,883.0,openai/gpt-oss-20b,5,supported,"['Machine learning enables computers to learn patterns from data', 'Machine learning focuses on building systems that can learn from data', 'Machine learning identifies patterns', 'Machine learning makes decisions or predictions with minimal human intervention']",[],[],"The reference answer states that machine learning enables computers to learn patterns from data. All claims in the actual answer either repeat this core idea or extend it in ways that are consistent with it (e.g., learning from data, identifying patterns, making predictions). None of the additional details contradict the reference, and the instruction explicitly says not to penalize valid additional information that is absent from the reference. Therefore, the actual answer is fully supported by the reference."
+7,What is supervised learning?,Supervised learning trains models using labeled data.,"**Supervised learning** is a type of machine‑learning paradigm in which a model is trained on a labeled dataset.  
+In a labeled dataset each input (often called a *feature vector* or *instance*) is paired with a known output (the *label* or *target*). The goal of supervised learning is to learn a mapping from inputs to outputs that generalizes well to new, unseen data.
+
+### Core components
+
+| Component | Description |
+|-----------|-------------|
+| **Input space** | The set of all possible feature vectors (e.g., pixel values, sensor readings). |
+| **Output space** | The set of possible labels (e.g., class categories, continuous values). |
+| **Training data** | A collection of \((x_i, y_i)\) pairs where \(x_i\) is an input and \(y_i\) is its true label. |
+| **Model** | A function \(f_\theta(x)\) parameterized by \(\theta\) that predicts an output from an input. |
+| **Loss function** | A measure of how far the model’s predictions are from the true labels (e.g., cross‑entropy for classification, mean‑squared error for regression). |
+| **Optimization** | An algorithm (often gradient‑based) that adjusts \(\theta\) to minimize the loss over the training set. |
+
+### Typical workflow
+
+1. **Collect labeled data** – e.g., images of cats/dogs with corresponding class labels.  
+2. **Preprocess** – normalize, augment, split into training/validation/test sets.  
+3. **Choose a model** – linear regression, decision tree, neural network, etc.  
+4. **Define a loss function** – cross‑entropy, hinge loss, MSE, etc.  
+5. **Train** – iterate over the data, update parameters to reduce loss.  
+6. **Validate** – monitor performance on a held‑out set to avoid overfitting.  
+7. **Test** – evaluate final model on unseen data to estimate real‑world performance.
+
+### Common supervised learning tasks
+
+| Task | Typical output | Example algorithms |
+|------|----------------|--------------------|
+| **Classification** | Discrete class labels | Logistic regression, SVM, Random Forest, CNNs |
+| **Regression** | Continuous values | Linear regression, Ridge/Lasso, Gradient‑boosted trees, MLPs |
+| **Sequence labeling** | Labels per time step | CRFs, RNNs, Transformers |
+| **Object detection** | Bounding boxes + class | YOLO, Faster R‑CNN |
+
+### Key characteristics
+
+- **Requires labeled data**: The main limitation is the need for a large, accurately labeled dataset.  
+- **Predictive accuracy**: The model’s performance is measured by how well it predicts labels on new data.  
+- **Generalization**: The goal is to learn a function that works well beyond the training examples.  
+- **Evaluation metrics**: Accuracy, precision/recall, F1‑score, ROC‑AUC for classification; RMSE, MAE, R² for regression.
+
+### Contrast with other paradigms
+
+| Paradigm | Label requirement | Typical goal |
+|----------|-------------------|--------------|
+| **Supervised** | Yes | Predict labels for new inputs |
+| **Unsupervised** | No | Discover structure (clusters, embeddings) |
+| **Semi‑supervised** | Few labels + many unlabeled | Leverage both labeled and unlabeled data |
+| **Reinforcement** | No explicit labels | Learn a policy to maximize cumulative reward |
+
+---
+
+**Bottom line:**  
+Supervised learning is the process of teaching a model to map inputs to known outputs by exposing it to many labeled examples, optimizing a loss function, and validating its ability to generalize to new data.",0.017391304347826,0.5021,5,PASS,"The answer correctly states that supervised learning trains models using labeled data, fully matches the expected answer, and provides additional relevant details without irrelevant content.",1.1116,88.0,835.0,openai/gpt-oss-20b,5,supported,"['Supervised learning trains models using labeled data.', 'In supervised learning, each input is paired with a known output (label).', 'The goal is to learn a mapping from inputs to outputs that generalizes to new data.', 'Supervised learning requires labeled data.', 'Typical supervised learning tasks include classification, regression, sequence labeling, and object detection.', 'Supervised learning is contrasted with unsupervised, semi‑supervised, and reinforcement learning paradigms.']",[],[],The actual answer expands on the brief definition provided in the reference but does not introduce any contradictory or unsupported statements. All claims made in the actual answer are consistent with the reference that supervised learning trains models using labeled data.
+8,What is overfitting?,Overfitting occurs when a model learns training data too closely and performs poorly on unseen data.,"**Overfitting** is a common problem in machine learning where a model learns the training data too well—capturing not only the underlying patterns but also the noise, outliers, and idiosyncrasies specific to that dataset. As a result, the model performs excellently on the training data but poorly on new, unseen data.
+
+---
+
+### Why it Happens
+
+| Factor | How it contributes |
+|--------|--------------------|
+| **Complex model** | Too many parameters relative to the amount of data (e.g., deep neural nets on small datasets). |
+| **Limited data** | Small training set makes it easier for the model to memorize rather than generalize. |
+| **Noisy data** | Random fluctuations or errors in the data are treated as signal. |
+| **Too many features** | Including irrelevant or highly correlated features can lead the model to latch onto spurious relationships. |
+| **Insufficient regularization** | Lack of constraints (e.g., weight decay, dropout) allows weights to grow large and fit noise. |
+
+---
+
+### How to Detect Overfitting
+
+1. **Training vs. Validation Loss/Accuracy**  
+   - **Training error** continues to drop while **validation error** starts to rise.  
+   - A large gap between training and validation performance is a red flag.
+
+2. **Learning Curves**  
+   - Plot loss/accuracy over epochs for both sets.  
+   - Divergence after a certain point indicates overfitting.
+
+3. **Cross‑Validation**  
+   - Consistently lower scores on validation folds than on training data.
+
+4. **Test Set Performance**  
+   - If you have a held‑out test set, a sharp drop in performance compared to training/validation signals overfitting.
+
+---
+
+### Prevention & Mitigation Techniques
+
+| Technique | What it does | Typical Use‑Case |
+|-----------|--------------|------------------|
+| **Regularization** (L1/L2, weight decay) | Adds a penalty for large weights, encouraging simpler models. | Neural nets, linear models |
+| **Dropout** | Randomly drops units during training, forcing redundancy. | Deep neural nets |
+| **Early Stopping** | Stop training when validation loss stops improving. | Any iterative training |
+| **Data Augmentation** | Generate synthetic variations of training data. | Image, audio, text |
+| **Cross‑Validation** | Use multiple train/validation splits to estimate generalization. | Small datasets |
+| **Feature Selection / Dimensionality Reduction** | Reduce irrelevant or redundant features. | High‑dimensional tabular data |
+| **Ensemble Methods** (bagging, boosting) | Combine multiple models to reduce variance. | Random Forests, Gradient Boosting |
+| **Simplify the Model** | Reduce depth, number of layers, or parameters. | When data is scarce |
+| **Increase Training Data** | More examples help the model learn true patterns. | Whenever possible |
+
+---
+
+### Quick Checklist
+
+- [ ] Is the training accuracy far higher than validation accuracy?  
+- [ ] Does the validation loss start increasing after a few epochs?  
+- [ ] Are you using a very deep network for a small dataset?  
+- [ ] Have you applied regularization or dropout?  
+- [ ] Do you have a separate test set to confirm generalization?
+
+If you answer “yes” to several of these, you’re likely dealing with overfitting. Applying one or more of the mitigation techniques above should help your model generalize better.",0.0622222222222222,0.6996,5,PASS,"The answer correctly defines overfitting as a model learning training data too closely and performing poorly on unseen data, matching the expected answer. It also provides additional relevant information, which does not detract from correctness.",1.1349,89.0,756.0,openai/gpt-oss-20b,5,supported,['Overfitting occurs when a model learns training data too closely and performs poorly on unseen data.'],"['Overfitting is a common problem in machine learning where a model learns the training data too well—capturing not only the underlying patterns but also the noise, outliers, and idiosyncrasies specific to that dataset.', 'As a result, the model performs excellently on the training data but poorly on new, unseen data.', 'Complex model: Too many parameters relative to the amount of data (e.g., deep neural nets on small datasets).', 'Limited data: Small training set makes it easier for the model to memorize rather than generalize.', 'Noisy data: Random fluctuations or errors in the data are treated as signal.', 'Too many features: Including irrelevant or highly correlated features can lead the model to latch onto spurious relationships.', 'Insufficient regularization: Lack of constraints (e.g., weight decay, dropout) allows weights to grow large and fit noise.', 'Training vs. Validation Loss/Accuracy: Training error continues to drop while validation error starts to rise.', 'Learning Curves: Plot loss/accuracy over epochs for both sets; divergence after a certain point indicates overfitting.', 'Cross‑Validation: Consistently lower scores on validation folds than on training data.', 'Test Set Performance: A sharp drop in performance compared to training/validation signals overfitting.', 'Regularization (L1/L2, weight decay): Adds a penalty for large weights, encouraging simpler models.', 'Dropout: Randomly drops units during training, forcing redundancy.', 'Early Stopping: Stop training when validation loss stops improving.', 'Data Augmentation: Generate synthetic variations of training data.', 'Cross‑Validation: Use multiple train/validation splits to estimate generalization.', 'Feature Selection / Dimensionality Reduction: Reduce irrelevant or redundant features.', 'Ensemble Methods (bagging, boosting): Combine multiple models to reduce variance.', 'Simplify the Model: Reduce depth, number of layers, or parameters.', 'Increase Training Data: More examples help the model learn true patterns.', 'Quick Checklist items (training accuracy vs. validation accuracy, validation loss increase, deep network for small dataset, regularization/dropout, separate test set).']",[],"The actual answer expands on the definition of overfitting given in the reference, adding detailed causes, detection methods, and mitigation techniques. All added claims are factually correct and do not contradict the reference. They are simply not present in the reference, so they are marked as unsupported but not incorrect."
+9,What is a classification problem?,Classification predicts discrete categories or labels.,"A **classification problem** is a type of supervised learning task in which the goal is to assign each input instance to one (or more) discrete categories, called *classes* or *labels*. In other words, you’re trying to predict a categorical outcome based on observed features.
+
+---
+
+## Core Elements
+
+| Element | What it is | Example |
+|---------|------------|---------|
+| **Input (features)** | Quantitative or qualitative attributes that describe each instance. | Email text, pixel values of an image, sensor readings. |
+| **Output (label)** | A discrete category. | “spam” vs. “not spam”, “cat” vs. “dog”, “fraudulent” vs. “legitimate”. |
+| **Training data** | Labeled examples used to teach the model. | A dataset of emails labeled as spam or not. |
+| **Model** | A function that maps features to labels. | Logistic regression, decision tree, neural network. |
+| **Evaluation metric** | Measure of how well the model predicts labels. | Accuracy, precision, recall, F1‑score, ROC‑AUC. |
+
+---
+
+## Types of Classification
+
+| Type | Description | Typical Use‑Case |
+|------|-------------|-----------------|
+| **Binary classification** | Two possible labels. | Email spam detection, disease diagnosis (positive/negative). |
+| **Multiclass classification** | More than two mutually exclusive labels. | Handwritten digit recognition (0‑9), species identification. |
+| **Multilabel classification** | Each instance can belong to multiple labels simultaneously. | Tagging a news article with multiple topics. |
+| **Ordinal classification** | Labels have a natural order but not a numeric distance. | Customer satisfaction ratings (poor, fair, good, excellent). |
+| **Imbalanced classification** | One class is much rarer than others. | Fraud detection, rare disease detection. |
+
+---
+
+## Typical Workflow
+
+1. **Problem definition** – Clarify the classes and the business objective.
+2. **Data collection & labeling** – Gather enough labeled examples.
+3. **Preprocessing** – Clean data, encode categorical variables, normalize/scale features.
+4. **Feature engineering** – Create or select informative features.
+5. **Model selection** – Choose an algorithm (e.g., SVM, Random Forest, CNN).
+6. **Training** – Fit the model to the training data.
+7. **Validation** – Tune hyperparameters on a validation set or via cross‑validation.
+8. **Testing** – Evaluate on a held‑out test set to estimate real‑world performance.
+9. **Deployment** – Integrate the model into production, monitor for drift.
+
+---
+
+## Common Algorithms
+
+| Algorithm | Strengths | Weaknesses |
+|-----------|-----------|------------|
+| Logistic Regression | Simple, interpretable, fast | Assumes linear decision boundary |
+| Decision Tree | Easy to interpret, handles non‑linearities | Prone to overfitting |
+| Random Forest / Gradient Boosting | High accuracy, robust to noise | Less interpretable, heavier |
+| Support Vector Machine | Effective in high dimensions | Computationally expensive on large data |
+| Neural Networks (CNN, RNN, Transformers) | Powerful for complex patterns | Requires large data, less interpretable |
+
+---
+
+## Evaluation Metrics (Binary)
+
+| Metric | Formula | When to use |
+|--------|---------|-------------|
+| Accuracy | (TP+TN)/(TP+TN+FP+FN) | Balanced classes |
+| Precision | TP/(TP+FP) | When false positives are costly |
+| Recall (Sensitivity) | TP/(TP+FN) | When false negatives are costly |
+| F1‑Score | 2·(Precision·Recall)/(Precision+Recall) | Trade‑off between precision & recall |
+| ROC‑AUC | Area under ROC curve | Threshold‑independent performance |
+
+For multiclass problems, you can compute these metrics per class (macro/micro averaging) or use confusion matrices.
+
+---
+
+## Practical Tips
+
+- **Handle class imbalance**: resample (oversample minority, undersample majority), use class‑weighting, or generate synthetic samples (SMOTE).
+- **Feature scaling**: many algorithms (SVM, k‑NN) benefit from standardized features.
+- **Cross‑validation**: use stratified folds to preserve class proportions.
+- **Model interpretability**: SHAP, LIME, or tree‑based feature importance can help explain predictions.
+- **Monitor drift**: In production, retrain periodically if data distribution changes.
+
+---
+
+### Quick Example
+
+**Problem**: Predict whether a customer will churn (leave) or stay.
+
+| Feature | Value |
+|---------|-------|
+| Monthly bill | $70 |
+| Tenure (months) | 12 |
+| Internet service | Fiber |
+| Support calls | 2 |
+
+**Label**: `Churn` (Yes/No)
+
+A trained classifier might output a probability of churn, and you’d set a threshold (e.g., 0.5) to decide the final class.
+
+---
+
+**Bottom line**: A classification problem is all about mapping inputs to discrete categories. It’s the foundation of many real‑world AI applications—from spam filters and medical diagnosis to image recognition and recommendation systems.",0.0197368421052631,0.5826,5,PASS,"The answer accurately defines a classification problem as predicting discrete categories or labels, includes relevant details, and fully covers the expected answer.",1.5059,89.0,1120.0,openai/gpt-oss-20b,5,supported,"['Classification predicts discrete categories or labels.', 'A classification problem is a type of supervised learning task in which the goal is to assign each input instance to one (or more) discrete categories, called classes or labels.', 'The core elements of a classification problem include input features, output labels, training data, a model, and evaluation metrics.', 'Classification can be binary, multiclass, multilabel, ordinal, or imbalanced.', 'The typical workflow for a classification problem involves problem definition, data collection and labeling, preprocessing, feature engineering, model selection, training, validation, testing, and deployment.', 'Common algorithms for classification include logistic regression, decision trees, random forests, gradient boosting, support vector machines, and neural networks.', 'Evaluation metrics for classification include accuracy, precision, recall, F1‑score, and ROC‑AUC.', 'Practical tips for classification include handling class imbalance, feature scaling, cross‑validation, model interpretability, and monitoring drift.', 'An example of a classification problem is predicting customer churn.']",[],[],"The reference answer states that classification predicts discrete categories or labels. All claims made in the actual answer elaborate on this definition and provide additional details that are consistent with the reference. None of the claims contradict the reference, and all are supported by the minimal statement given. Therefore, the actual answer is fully supported."
+10,What is regression?,Regression predicts continuous numerical values.,"**Regression** is a statistical and machine‑learning technique used to model the relationship between one or more *independent* (predictor) variables and a *dependent* (response) variable. The goal is to predict or explain the value of the response variable based on the predictors.
+
+---
+
+## 1. Core Idea
+
+- **Dependent variable (Y)**: The outcome you want to predict or explain (e.g., house price, blood pressure, test score).
+- **Independent variables (X₁, X₂, …, Xₖ)**: The features that are believed to influence Y (e.g., square footage, number of bedrooms, age of the house).
+
+Regression finds a mathematical function \( f(X) \) that best maps the predictors to the response. The “best” fit is usually defined by minimizing a loss function (most commonly the sum of squared errors).
+
+---
+
+## 2. Types of Regression
+
+| Type | Typical Use | Loss Function | Example |
+|------|-------------|---------------|---------|
+| **Linear Regression** | Continuous Y, linear relationship | Mean Squared Error (MSE) | Predicting salary from years of experience |
+| **Multiple Linear Regression** | Multiple predictors | MSE | Predicting house price from size, location, age |
+| **Logistic Regression** | Binary Y (0/1) | Cross‑entropy / log loss | Predicting disease presence (yes/no) |
+| **Poisson Regression** | Count data | Poisson deviance | Number of accidents per year |
+| **Ordinal Regression** | Ordered categorical Y | Ordinal logit | Likert scale ratings |
+| **Non‑linear Regression** | Non‑linear relationships | MSE or other | Modeling growth curves |
+| **Regularized Regression** (Ridge, Lasso, Elastic Net) | Prevent over‑fitting, feature selection | MSE + penalty term | High‑dimensional genomics data |
+| **Robust Regression** | Outlier‑resistant | Huber loss, Tukey loss | Financial return modeling |
+| **Time‑series Regression** (ARIMA, SARIMA) | Temporal dependence | MSE | Forecasting monthly sales |
+
+---
+
+## 3. Key Concepts
+
+| Concept | Explanation |
+|---------|-------------|
+| **Model Coefficients** | Parameters (β₀, β₁, …, βₖ) that quantify the effect of each predictor. |
+| **Intercept (β₀)** | Expected value of Y when all X’s are zero. |
+| **Residuals** | Differences between observed Y and predicted \(\hat{Y}\). |
+| **R² (Coefficient of Determination)** | Proportion of variance in Y explained by the model (0–1). |
+| **Adjusted R²** | R² adjusted for number of predictors, penalizing over‑fitting. |
+| **p‑value / t‑statistic** | Tests whether a coefficient is significantly different from zero. |
+| **Assumptions (Linear Regression)** | Linearity, independence, homoscedasticity, normality of residuals, no multicollinearity. |
+| **Regularization** | Adds a penalty to large coefficients to reduce variance. |
+| **Cross‑validation** | Technique to estimate model performance on unseen data. |
+
+---
+
+## 4. Regression vs. Classification
+
+| Feature | Regression | Classification |
+|---------|------------|----------------|
+| Response | Continuous | Discrete class labels |
+| Loss | MSE, MAE, etc. | Cross‑entropy, hinge loss, etc. |
+| Output | Real number | Class probability or label |
+| Example | Predicting temperature | Predicting spam vs. ham |
+
+---
+
+## 5. Practical Workflow
+
+1. **Define the problem** – Identify Y and X variables.
+2. **Collect data** – Ensure sufficient sample size and quality.
+3. **Preprocess** – Handle missing values, encode categorical variables, scale features.
+4. **Split data** – Train / validation / test sets (or use cross‑validation).
+5. **Choose a model** – Start simple (linear), then add complexity if needed.
+6. **Fit the model** – Estimate coefficients by minimizing loss.
+7. **Evaluate** – Use R², MAE, RMSE, residual plots, and statistical tests.
+8. **Validate** – Check assumptions, perform diagnostics, adjust model.
+9. **Deploy** – Use the model for predictions, monitor performance over time.
+
+---
+
+## 6. Common Pitfalls
+
+- **Over‑fitting**: Too many predictors relative to observations; mitigated by regularization or feature selection.
+- **Multicollinearity**: Highly correlated predictors inflate variance of coefficients.
+- **Violation of assumptions**: Non‑linear relationships, heteroscedasticity, or non‑normal residuals can bias inference.
+- **Ignoring interaction terms**: Important relationships may be missed if interactions are not modeled.
+- **Data leakage**: Using future information in training leads to overly optimistic performance.
+
+---
+
+## 7. Quick Example (Python)
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Load data
+df = pd.read_csv('housing.csv')
+X = df[['sqft', 'bedrooms', 'age']]
+y = df['price']
+
+# Train/test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Fit model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Evaluate
+print('R²:', r2_score(y_test, y_pred))
+print('RMSE:', mean_squared_error(y_test, y_pred, squared=False))
+```
+
+---
+
+## 8. Take‑away
+
+Regression is a foundational tool for predicting continuous outcomes and understanding how predictors influence a response. By selecting the appropriate regression model, validating assumptions, and carefully evaluating performance, you can build reliable, interpretable models for a wide range of real‑world problems.",0.0088235294117647,0.4406,5,PASS,"The answer correctly explains that regression predicts continuous numerical values and provides a comprehensive, accurate, and relevant explanation that fully covers the expected answer.",1.7937,87.0,1383.0,openai/gpt-oss-20b,5,supported,['Regression predicts continuous numerical values.'],[],[],"The actual answer expands on the reference by describing regression as a statistical and machine‑learning technique that models the relationship between independent and dependent variables and predicts continuous outcomes. All statements in the actual answer are consistent with the reference, and no claim contradicts it. The additional details are valid and not penalized."
+11,What is SQL?,SQL is a language used to manage and query relational databases.,"**SQL** – *Structured Query Language* – is the standard language for interacting with relational databases. It lets you define, manipulate, and retrieve data stored in tables that follow the relational model.
+
+---
+
+### Core Functions
+
+| Category | Typical Commands | What It Does |
+|----------|------------------|--------------|
+| **DDL** (Data Definition Language) | `CREATE`, `ALTER`, `DROP`, `TRUNCATE` | Define or change the structure of database objects (tables, indexes, views, schemas). |
+| **DML** (Data Manipulation Language) | `SELECT`, `INSERT`, `UPDATE`, `DELETE` | Read and modify the actual data rows. |
+| **DCL** (Data Control Language) | `GRANT`, `REVOKE` | Manage permissions and security. |
+| **DQL** (Data Query Language) | `SELECT` (often grouped with DML) | Retrieve data, often with filtering, sorting, grouping, and aggregation. |
+| **DTL** (Data Transaction Language) | `COMMIT`, `ROLLBACK`, `SAVEPOINT` | Control transactions to ensure ACID properties. |
+
+---
+
+### Why SQL Matters
+
+1. **Standardization**  
+   - ANSI/ISO standardized SQL in 1986 (SQL‑86) and has evolved through SQL‑92, SQL:1999, SQL:2003, SQL:2008, SQL:2011, SQL:2016, and SQL:2019.  
+   - Most RDBMSs (MySQL, PostgreSQL, SQL Server, Oracle, SQLite, MariaDB, etc.) implement the standard with vendor‑specific extensions.
+
+2. **Relational Model**  
+   - Data is stored in tables (relations) with rows (tuples) and columns (attributes).  
+   - Keys (primary, foreign) enforce entity integrity and referential integrity.
+
+3. **Declarative Nature**  
+   - You describe *what* you want (e.g., “give me all customers from New York”) rather than *how* to compute it.  
+   - The database engine’s query optimizer decides the most efficient execution plan.
+
+4. **ACID Transactions**  
+   - **Atomicity** – all or nothing.  
+   - **Consistency** – database constraints are preserved.  
+   - **Isolation** – concurrent transactions don’t interfere.  
+   - **Durability** – once committed, changes survive failures.
+
+5. **Powerful Query Features**  
+   - **Joins** (INNER, LEFT, RIGHT, FULL, CROSS) to combine tables.  
+   - **Aggregations** (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`).  
+   - **Window functions** (`ROW_NUMBER()`, `RANK()`, `LEAD()`, `LAG()`).  
+   - **Common Table Expressions (CTEs)**, including recursive CTEs for hierarchical data.  
+   - **Subqueries** and **derived tables**.
+
+6. **Extensibility**  
+   - User‑defined functions, stored procedures, triggers, and custom data types.  
+   - Full‑text search, spatial data types, JSON/XML support in modern engines.
+
+---
+
+### Common Use Cases
+
+| Scenario | Typical SQL |
+|----------|-------------|
+| **Reporting** | `SELECT` with `GROUP BY`, `HAVING`, `ORDER BY` |
+| **Data Integration (ETL)** | `INSERT … SELECT`, `MERGE` (UPSERT) |
+| **Application Backend** | CRUD operations via prepared statements |
+| **Analytics** | Window functions, CTEs, materialized views |
+| **Security** | `GRANT`/`REVOKE`, row‑level security policies |
+
+---
+
+### Things to Keep in Mind
+
+- **SQL Injection** – Always use parameterized queries or prepared statements to avoid malicious code execution.  
+- **Performance** – Indexes, query plans, and proper schema design (normalization vs. denormalization) are critical.  
+- **Vendor Differences** – While the core language is standard, syntax for certain features (e.g., `LIMIT` vs. `TOP`, `RETURNING` clause) can vary.  
+- **NoSQL vs. SQL** – SQL excels with structured, relational data; NoSQL databases are chosen for unstructured or highly scalable use cases.
+
+---
+
+### Quick Example
+
+```sql
+-- Create a table
+CREATE TABLE employees (
+    id          SERIAL PRIMARY KEY,
+    first_name  VARCHAR(50) NOT NULL,
+    last_name   VARCHAR(50) NOT NULL,
+    department  VARCHAR(30),
+    salary      NUMERIC(10,2),
+    hire_date   DATE DEFAULT CURRENT_DATE
+);
+
+-- Insert a row
+INSERT INTO employees (first_name, last_name, department, salary)
+VALUES ('Jane', 'Doe', 'Engineering', 85000);
+
+-- Query
+SELECT first_name, last_name, salary
+FROM employees
+WHERE department = 'Engineering'
+ORDER BY salary DESC
+LIMIT 10;
+```
+
+---
+
+**In short:** SQL is the lingua franca of relational databases, providing a powerful, standardized way to define schemas, enforce integrity, and retrieve or manipulate data efficiently. Whether you’re building a web app, running analytics, or managing enterprise data, SQL is the foundational tool that makes it all possible.",0.036563071297989,0.6135,5,PASS,"The answer correctly states that SQL is a language used to manage and query relational databases, matching the expected answer. It is factually correct, relevant, and fully covers the expected content while providing additional useful details.",7.3153,87.0,1739.0,openai/gpt-oss-20b,5,supported,['SQL is a language used to manage and query relational databases.'],"['SQL – Structured Query Language – is the standard language for interacting with relational databases.', 'It lets you define, manipulate, and retrieve data stored in tables that follow the relational model.', 'Core Functions: DDL, DML, DCL, DQL, DTL categories and their typical commands.', 'Standardization: ANSI/ISO standardized SQL in 1986 and its evolution through SQL‑92, SQL:1999, SQL:2003, SQL:2008, SQL:2011, SQL:2016, and SQL:2019.', 'Relational Model: Data stored in tables with rows and columns, primary and foreign keys enforcing integrity.', 'Declarative Nature: You describe what you want rather than how to compute it.', 'ACID Transactions: Atomicity, Consistency, Isolation, Durability.', 'Powerful Query Features: Joins, aggregations, window functions, CTEs, subqueries, derived tables.', 'Extensibility: User-defined functions, stored procedures, triggers, custom data types, full-text search, spatial data types, JSON/XML support.', 'Common Use Cases: Reporting, Data Integration (ETL), Application Backend, Analytics, Security.', 'Things to Keep in Mind: SQL Injection prevention, performance considerations, vendor differences, NoSQL vs SQL.', 'Quick Example: CREATE TABLE, INSERT, SELECT statements.']",[],"The actual answer provides a comprehensive, factually accurate expansion of the reference statement. All claims are consistent with the reference and contain no contradictions or inaccuracies. The reference only states that SQL is a language for managing and querying relational databases; the actual answer elaborates on this definition with additional factual details, which are not contradicted by the reference."
+12,What does SELECT do in SQL?,SELECT retrieves data from a database.,"### The `SELECT` statement – the heart of data retrieval in SQL
+
+`SELECT` is the most common SQL command.  
+Its primary job is to **query a database and return rows of data** that match the criteria you specify.
+
+---
+
+## 1. Basic syntax
+
+```sql
+SELECT column1, column2, ...
+FROM   table_name
+WHERE  condition
+ORDER BY column
+LIMIT  n;
+```
+
+| Clause | Purpose |
+|--------|---------|
+| `SELECT` | Lists the columns you want to see (or `*` for all columns). |
+| `FROM` | Indicates the table(s) or view(s) to read from. |
+| `WHERE` | Filters rows that must satisfy a condition. |
+| `ORDER BY` | Sorts the result set. |
+| `LIMIT` / `TOP` / `FETCH` | Restricts how many rows are returned. |
+
+> **Tip:**  
+> - `SELECT *` returns every column.  
+> - `SELECT DISTINCT` removes duplicate rows.  
+> - `SELECT COUNT(*)` gives you a row count.
+
+---
+
+## 2. Common variations
+
+| Variation | What it does | Example |
+|-----------|--------------|---------|
+| **Simple column list** | Return specific columns | `SELECT first_name, last_name FROM employees;` |
+| **All columns** | Return every column | `SELECT * FROM customers;` |
+| **Filtering** | Return only rows that meet a condition | `SELECT * FROM orders WHERE order_date > '2024-01-01';` |
+| **Sorting** | Order rows by one or more columns | `SELECT * FROM products ORDER BY price DESC;` |
+| **Limiting** | Return only the first N rows | `SELECT * FROM logs LIMIT 10;` |
+| **Aggregates** | Compute summary values | `SELECT department, COUNT(*) AS num_emp FROM employees GROUP BY department;` |
+| **Joins** | Combine rows from two or more tables | `SELECT e.first_name, d.name FROM employees e JOIN departments d ON e.dept_id = d.id;` |
+| **Subqueries** | Use a query inside another | `SELECT * FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);` |
+| **Views** | Persist a SELECT as a virtual table | `CREATE VIEW active_customers AS SELECT * FROM customers WHERE status = 'active';` |
+
+---
+
+## 3. How `SELECT` works under the hood
+
+1. **Parse** – The SQL engine checks syntax.  
+2. **Optimize** – It builds a query plan (decides how to access tables, which indexes to use, etc.).  
+3. **Execute** – It reads data from disk or memory, applies filters, joins, aggregates, and returns the result set to the client.
+
+Because of this, the same `SELECT` statement can run in milliseconds or minutes depending on:
+- Table size
+- Indexes
+- Complexity of joins/aggregations
+- Server load
+
+---
+
+## 4. Practical examples
+
+| Goal | SQL |
+|------|-----|
+| Get all customers in New York | `SELECT * FROM customers WHERE city = 'New York';` |
+| Count orders per customer | `SELECT customer_id, COUNT(*) AS orders FROM orders GROUP BY customer_id;` |
+| Top 5 highest‑priced products | `SELECT * FROM products ORDER BY price DESC LIMIT 5;` |
+| List employees with a manager | `SELECT e.first_name, m.first_name AS manager FROM employees e LEFT JOIN employees m ON e.manager_id = m.id;` |
+| Find customers who never ordered | `SELECT c.* FROM customers c LEFT JOIN orders o ON c.id = o.customer_id WHERE o.id IS NULL;` |
+
+---
+
+## 5. Common pitfalls
+
+| Pitfall | Fix |
+|---------|-----|
+| **Using `SELECT *` in production** | Specify only needed columns to reduce I/O and network traffic. |
+| **Missing indexes on `WHERE` columns** | Add indexes to speed up filtering. |
+| **Using `SELECT` with `ORDER BY` but no `LIMIT` on huge tables** | Consider pagination or `OFFSET`/`FETCH`. |
+| **Assuming `SELECT` is always fast** | Profile queries (`EXPLAIN` or `EXPLAIN ANALYZE`) to see actual cost. |
+
+---
+
+## 6. Quick reference cheat sheet
+
+```sql
+-- All columns
+SELECT * FROM table;
+
+-- Specific columns
+SELECT col1, col2 FROM table;
+
+-- Filter rows
+SELECT * FROM table WHERE col = 'value';
+
+-- Sort
+SELECT * FROM table ORDER BY col ASC|DESC;
+
+-- Limit
+SELECT * FROM table LIMIT 10;          -- MySQL, PostgreSQL
+SELECT TOP 10 * FROM table;            -- SQL Server
+SELECT * FROM table FETCH FIRST 10 ROWS ONLY; -- ANSI
+
+-- Aggregation
+SELECT col, COUNT(*) FROM table GROUP BY col;
+
+-- Join
+SELECT a.col, b.col
+FROM table_a a
+JOIN table_b b ON a.id = b.a_id;
+
+-- Subquery
+SELECT * FROM table WHERE col IN (SELECT col FROM other_table);
+
+-- View
+CREATE VIEW view_name AS SELECT * FROM table WHERE condition;
+```
+
+---
+
+### Bottom line
+
+`SELECT` is the **query engine** of SQL.  
+It lets you pull exactly the data you need from one or more tables, optionally filtering, sorting, aggregating, and joining it along the way.  
+Mastering `SELECT` is the first step to becoming proficient in SQL.",0.0154559505409582,0.4756,5,PASS,"The answer correctly states that SELECT retrieves data from a database and provides comprehensive, accurate details about its usage, syntax, and behavior. It fully satisfies the expected answer and adds relevant context without irrelevant information.",2.2407,90.0,1857.0,openai/gpt-oss-20b,5,supported,"['SELECT retrieves data from a database', 'SELECT queries a database and returns rows of data that match the criteria you specify', 'SELECT lists the columns you want to see (or * for all columns)', 'FROM indicates the table(s) or view(s) to read from', 'WHERE filters rows that must satisfy a condition', 'ORDER BY sorts the result set', 'LIMIT / TOP / FETCH restricts how many rows are returned', 'SELECT * returns every column', 'SELECT DISTINCT removes duplicate rows', 'SELECT COUNT(*) gives you a row count', 'SELECT can return specific columns, all columns, filtered rows, sorted rows, limited rows, aggregates, joins, subqueries, and views', 'SELECT works by parsing, optimizing, and executing the query', 'The same SELECT statement can run in milliseconds or minutes depending on table size, indexes, complexity of joins/aggregations, and server load', 'Common pitfalls include using SELECT * in production, missing indexes on WHERE columns, using SELECT with ORDER BY but no LIMIT on huge tables, and assuming SELECT is always fast']",[],[],"The actual answer expands on the reference statement by providing detailed syntax, clauses, variations, execution steps, examples, pitfalls, and a cheat sheet. All of these details are consistent with the reference that SELECT retrieves data from a database. No claim in the actual answer contradicts the reference, and all claims are supported by the reference or are general factual knowledge about SQL SELECT. Therefore the answer is fully supported."
+13,What is a primary key?,A primary key uniquely identifies each row in a table.,"A **primary key** is a column (or a set of columns) in a relational database table that uniquely identifies each row in that table. Think of it as the “official ID” for every record.
+
+### Key characteristics
+
+| Feature | What it means |
+|---------|---------------|
+| **Uniqueness** | No two rows can have the same primary‑key value. |
+| **Not NULL** | Every row must have a value for the primary key; it can’t be left empty. |
+| **Immutable** | Ideally, the value never changes. If it does, you risk breaking relationships. |
+| **Indexed** | Most database engines automatically create an index on the primary key to speed up lookups, joins, and updates. |
+
+### Why it matters
+
+1. **Data integrity** – The primary key guarantees that each row is distinct, preventing accidental duplicate records.
+2. **Relationships** – Foreign keys in other tables reference the primary key to establish one‑to‑many or many‑to‑many relationships.
+3. **Performance** – Indexing the primary key makes queries that filter on that column fast.
+4. **Concurrency control** – Many database engines use the primary key to lock rows during updates, ensuring consistency.
+
+### Common choices for primary keys
+
+| Type | Typical use | Pros | Cons |
+|------|-------------|------|------|
+| **Surrogate key** (e.g., auto‑increment integer, UUID) | When there’s no natural unique attribute or you want a stable, simple key. | Simple, fast, stable. | Adds an extra column; not human‑readable. |
+| **Natural key** (e.g., Social Security Number, email) | When the data already has a unique identifier. | No extra column; meaningful. | Can change, may be composite, may expose sensitive data. |
+| **Composite key** (multiple columns) | When uniqueness is defined by a combination of fields. | Reflects real-world uniqueness. | More complex indexing, harder to reference. |
+
+### Example
+
+```sql
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,          -- surrogate key
+    FirstName VARCHAR(50),
+    LastName  VARCHAR(50),
+    Email     VARCHAR(100) UNIQUE
+);
+```
+
+- `EmployeeID` is the primary key: unique, not null, indexed.
+- `Email` is also unique but not the primary key; it could be used as a secondary unique constraint.
+
+### Quick checklist
+
+- **Is the column unique?** ✔️
+- **Can it be NULL?** ❌
+- **Will it change?** Ideally no.
+- **Do you need an index?** Yes, most DBMS create one automatically.
+
+---
+
+**Bottom line:** A primary key is the table’s unique identifier—an essential building block for relational integrity, efficient querying, and reliable data modeling.",0.053475935828877,0.658,5,PASS,"The answer correctly defines a primary key as a column or set of columns that uniquely identifies each row in a table, matching the expected answer. It also provides additional correct details such as uniqueness, not null, immutability, indexing, and the role in relationships and performance, all of which are relevant and accurate. No incorrect information is present.",9.0349,89.0,652.0,openai/gpt-oss-20b,5,supported,['A primary key uniquely identifies each row in a table.'],"['A primary key is a column (or a set of columns) in a relational database table that uniquely identifies each row in that table.', 'No two rows can have the same primary‑key value.', 'Every row must have a value for the primary key; it can’t be left empty.', 'Ideally, the value never changes.', 'Most database engines automatically create an index on the primary key to speed up lookups, joins, and updates.', 'The primary key guarantees that each row is distinct, preventing accidental duplicate records.', 'Foreign keys in other tables reference the primary key to establish one‑to‑many or many‑to‑many relationships.', 'Indexing the primary key makes queries that filter on that column fast.', 'Many database engines use the primary key to lock rows during updates, ensuring consistency.', 'Surrogate key (e.g., auto‑increment integer, UUID) is used when there’s no natural unique attribute or you want a stable, simple key.', 'Natural key (e.g., Social Security Number, email) is used when the data already has a unique identifier.', 'Composite key (multiple columns) is used when uniqueness is defined by a combination of fields.', 'Example SQL statement creating a table with a primary key.', 'Checklist items for verifying a primary key.']",[],"The actual answer contains the core claim that a primary key uniquely identifies each row, which matches the reference. All additional details (not‑null requirement, immutability, indexing, relationships, performance, key types, example, checklist) are not mentioned in the reference but are factual and do not contradict it. Therefore the answer is fully supported by the reference, with many unsupported claims that are nevertheless correct."
+14,What is the purpose of WHERE?,WHERE filters records based on specified conditions.,"### The WHERE clause – a quick recap
+
+In SQL, the **WHERE** clause is the mechanism that lets you *filter* rows.  
+It tells the database engine: “Only keep the rows that satisfy this condition (or set of conditions).”
+
+---
+
+## 1. Where it fits in the query plan
+
+```
+SELECT … 
+FROM … 
+WHERE …          ← filter rows here
+GROUP BY … 
+HAVING … 
+ORDER BY …
+```
+
+- **FROM** pulls the data from tables (or joins).
+- **WHERE** is applied *before* grouping, aggregation, and ordering.
+- It can be used in **SELECT**, **UPDATE**, **DELETE**, and **INSERT … SELECT** statements.
+
+---
+
+## 2. What it does
+
+| Purpose | How it works |
+|---------|--------------|
+| **Row filtering** | Keeps only rows that meet the condition(s). |
+| **Conditional logic** | Supports comparisons (`=`, `<`, `>`, `<=`, `>=`, `<>`), pattern matching (`LIKE`, `REGEXP`), set membership (`IN`, `NOT IN`), range checks (`BETWEEN`), null checks (`IS NULL`, `IS NOT NULL`). |
+| **Logical operators** | Combine conditions with `AND`, `OR`, `NOT`. |
+| **Subqueries** | Use a subquery in the condition (`WHERE column IN (SELECT …)`). |
+| **Correlated subqueries** | Reference outer query columns (`WHERE column = (SELECT … FROM … WHERE outer.column = …)`). |
+
+---
+
+## 3. Why it matters
+
+1. **Performance** – By filtering early, the database can avoid scanning or processing unnecessary rows.  
+2. **Correctness** – Ensures that only the intended data is returned or modified.  
+3. **Readability** – Makes the intent of the query explicit.  
+4. **Security** – In some contexts, it can enforce row‑level security (e.g., `WHERE user_id = CURRENT_USER_ID()`).
+
+---
+
+## 4. Quick examples
+
+### Basic filtering
+
+```sql
+SELECT * 
+FROM employees
+WHERE department_id = 5;
+```
+
+### Multiple conditions
+
+```sql
+SELECT name, salary
+FROM employees
+WHERE department_id = 5
+  AND salary > 60000
+  AND hire_date >= '2020-01-01';
+```
+
+### Pattern matching
+
+```sql
+SELECT *
+FROM customers
+WHERE email LIKE '%@example.com';
+```
+
+### Using IN
+
+```sql
+SELECT *
+FROM products
+WHERE category_id IN (1, 3, 7);
+```
+
+### Subquery
+
+```sql
+SELECT *
+FROM orders
+WHERE customer_id IN (
+    SELECT id
+    FROM customers
+    WHERE country = 'USA'
+);
+```
+
+### Correlated subquery
+
+```sql
+SELECT e.name, e.salary
+FROM employees e
+WHERE e.salary > (
+    SELECT AVG(salary)
+    FROM employees
+    WHERE department_id = e.department_id
+);
+```
+
+---
+
+## 5. Common pitfalls
+
+| Pitfall | Fix |
+|---------|-----|
+| **Using `=` with NULL** | Use `IS NULL` / `IS NOT NULL`. |
+| **Missing parentheses** | Complex logical expressions need parentheses to enforce precedence. |
+| **Wrong data type** | Ensure the column and value types match (e.g., compare dates to dates). |
+| **Performance** | Add indexes on columns used in WHERE; avoid functions on columns that prevent index usage. |
+
+---
+
+## 6. Summary
+
+- **Purpose**: *Filter rows* based on conditions.  
+- **Where**: After `FROM`, before `GROUP BY`/`HAVING`/`ORDER BY`.  
+- **Used in**: `SELECT`, `UPDATE`, `DELETE`, `INSERT … SELECT`.  
+- **Key features**: Comparisons, logical operators, pattern matching, subqueries, and more.
+
+That’s the essence of the WHERE clause—your first line of defense for shaping the data you work with.",0.019047619047619,0.5985,5,PASS,"The answer correctly states that WHERE filters rows based on specified conditions, fully covering the expected answer with accurate details.",1.229,90.0,1007.0,openai/gpt-oss-20b,3,partially_supported,['WHERE filters records based on specified conditions.'],"['WHERE is applied before grouping, aggregation, and ordering.', 'It can be used in SELECT, UPDATE, DELETE, and INSERT … SELECT statements.', 'Supports comparisons (=, <, >, <=, >=, <>), pattern matching (LIKE, REGEXP), set membership (IN, NOT IN), range checks (BETWEEN), null checks (IS NULL, IS NOT NULL).', 'Logical operators combine conditions with AND, OR, NOT.', 'Subqueries can be used in the condition.', 'Correlated subqueries reference outer query columns.', 'Performance benefit by filtering early.', 'Correctness ensures only intended data is returned or modified.', 'Readability makes intent explicit.', 'Security can enforce row-level security.', 'Examples of basic filtering, multiple conditions, pattern matching, IN, subquery, correlated subquery.', 'Pitfalls: using = with NULL, missing parentheses, wrong data type, performance issues.']",[],"The reference answer only states that WHERE filters records based on specified conditions. The actual answer contains that claim, so it is supported. All other statements in the actual answer are not mentioned in the reference and therefore are unsupported, though they are factually correct. No claim contradicts the reference."
+15,What is 15 multiplied by 8?,120,15 multiplied by 8 equals **120**.,0.2857142857142857,0.5039,5,PASS,"The answer correctly states that 15 multiplied by 8 equals 120, matching the expected answer.",5.3109,92.0,51.0,openai/gpt-oss-20b,5,supported,['15 multiplied by 8 equals 120'],[],[],"The actual answer states that 15 multiplied by 8 equals 120, which exactly matches the reference answer of 120. No additional or contradictory information is present."
+16,What is the square root of 144?,12,The square root of 144 is **12**.,0.25,0.3938,5,PASS,"The answer correctly states that the square root of 144 is 12, matching the expected answer and providing no extraneous information.",2.214,92.0,44.0,openai/gpt-oss-20b,5,supported,['The square root of 144 is 12.'],[],[],"The actual answer states that the square root of 144 is 12, which exactly matches the reference answer. There are no additional claims, and no contradictions or inaccuracies."
+17,What is 25 percent of 200?,50,25 percent of 200 is **50**.,0.2857142857142857,0.4642,5,PASS,"The answer correctly states that 25 percent of 200 is 50, matching the expected answer and fully addressing the question.",0.2114,92.0,65.0,openai/gpt-oss-20b,5,supported,['25 percent of 200 is 50'],[],[],"The actual answer states that 25 percent of 200 equals 50, which matches the reference answer of 50. No additional or contradictory claims are present."
+18,"If all roses are flowers, are all roses plants?","Yes, roses are plants.","Yes.  
+All roses are flowers, and all flowers are plants.  
+Since “all roses are flowers” and “all flowers are plants,” by transitivity every rose must be a plant. In other words, roses are a specific type of flowering plant.",0.1860465116279069,0.8064,5,PASS,"The answer correctly states that roses are plants, provides a valid logical explanation, and fully addresses the question.",0.4229,94.0,236.0,openai/gpt-oss-20b,5,supported,"['Yes, roses are plants.']",[],[],"The actual answer affirms that roses are plants, which matches the reference answer. The additional reasoning about roses being flowers and flowers being plants is logically correct and does not contradict the reference. Therefore, the answer is fully supported."
+19,A train travels 60 km in one hour. How far does it travel in 3 hours?,180 km,"If the train covers 60 km in one hour, then in 3 hours it would travel:
+
+\(60 \text{ km/hour} \times 3 \text{ hours} = 180 \text{ km}\).
+
+So the train travels **180 kilometers** in 3 hours.",0.1052631578947368,0.4308,5,PASS,"The answer correctly calculates the distance as 180 km, matches the expected answer, and is fully relevant and complete.",1.3504,103.0,106.0,openai/gpt-oss-20b,5,supported,['The train travels 180 km in 3 hours.'],[],[],"The actual answer correctly states that a train traveling 60 km per hour will cover 180 km in 3 hours, which matches the reference answer of 180 km. No additional or contradictory claims are present."
+20,What is an LLM?,A Large Language Model is an AI model trained on large amounts of text to understand and generate language.,"**LLM** most commonly stands for **Large Language Model**—a type of artificial‑intelligence system that learns to understand, generate, and manipulate human language by training on massive amounts of text data.
+
+---
+
+## 1. What a Large Language Model Is
+
+| Feature | Description |
+|---------|-------------|
+| **Scale** | Trained on billions of words (often hundreds of billions of tokens). |
+| **Architecture** | Typically a transformer‑based neural network (e.g., GPT‑4, LLaMA, PaLM). |
+| **Training objective** | Predict the next word (or token) in a sentence, or fill in missing words, which forces the model to learn grammar, facts, reasoning patterns, and world knowledge. |
+| **Parameters** | The “size” of the model is measured in the number of trainable weights—ranging from millions (small models) to hundreds of billions (state‑of‑the‑art). |
+| **Capabilities** | Text generation, summarization, translation, question answering, code generation, creative writing, and more. |
+
+---
+
+## 2. How They Work (Simplified)
+
+1. **Tokenization** – Text is broken into sub‑word units (tokens).  
+2. **Embedding** – Each token is mapped to a high‑dimensional vector.  
+3. **Transformer layers** – Self‑attention mechanisms allow the model to weigh relationships between tokens across the entire input.  
+4. **Output** – The model predicts the next token; repeated sampling produces a full sentence or paragraph.  
+
+During training, the model adjusts its weights to minimize the difference between its predictions and the actual next token in the training data.
+
+---
+
+## 3. Typical Use Cases
+
+| Domain | Example Applications |
+|--------|----------------------|
+| **Customer Support** | Chatbots that answer FAQs or troubleshoot issues. |
+| **Content Creation** | Drafting articles, social‑media posts, or marketing copy. |
+| **Education** | Tutoring systems, automated grading, or language learning aids. |
+| **Software Development** | Code completion, bug detection, or documentation generation. |
+| **Research** | Summarizing scientific papers, generating hypotheses, or translating technical documents. |
+| **Accessibility** | Voice assistants, screen‑reader enhancements, or real‑time captioning. |
+
+---
+
+## 4. Key Variants
+
+| Model | Size | Notable Features |
+|-------|------|------------------|
+| **GPT‑3** | 175 B | General‑purpose, strong text generation. |
+| **GPT‑4** | 100–200 B (publicly reported) | Improved reasoning, multimodal (text + image). |
+| **LLaMA** | 7–65 B | Open‑source, efficient for research. |
+| **PaLM** | 540 B | Google’s large‑scale model with strong reasoning. |
+| **Claude** | 52 B | Anthropic’s model focused on safety and alignment. |
+
+---
+
+## 5. Common Misconceptions
+
+| Misconception | Reality |
+|---------------|---------|
+| *LLMs “understand” language like humans.* | They capture statistical patterns; they don’t possess consciousness or true comprehension. |
+| *They can be used for any task without fine‑tuning.* | While many tasks work out‑of‑the‑box, fine‑tuning or prompt engineering often improves performance. |
+| *They are always accurate.* | They can hallucinate facts, reflect biases in training data, and may produce nonsensical outputs. |
+
+---
+
+## 6. Ethical & Practical Considerations
+
+- **Bias & Fairness** – Models can reproduce societal biases present in training data.  
+- **Privacy** – Training data may contain personal information; careful data handling is required.  
+- **Safety & Alignment** – Ensuring outputs don’t contain harmful or disallowed content.  
+- **Computational Cost** – Training and inference can be energy‑intensive; efficient architectures and distillation help.  
+
+---
+
+## 7. Quick Glossary
+
+- **Token** – The smallest unit the model processes (often a word fragment).  
+- **Parameter** – A weight in the neural network; the model’s “memory.”  
+- **Fine‑tuning** – Additional training on a specific dataset to specialize the model.  
+- **Prompt** – The input text that guides the model’s output.  
+- **Inference** – Generating output from a trained model.  
+
+---
+
+### Bottom Line
+
+An **LLM (Large Language Model)** is a powerful AI system that learns language patterns from vast text corpora and can generate, interpret, and manipulate human language across many domains. While they’re incredibly useful, they’re not perfect and must be used thoughtfully, with attention to ethics, safety, and the limits of their knowledge.",0.0647359454855195,0.7209,5,PASS,"The answer correctly defines an LLM as a large language model trained on vast amounts of text to understand and generate language, matching the expected answer. It is fully relevant and provides comprehensive coverage, with no incorrect or irrelevant content.",1.6738,89.0,1092.0,openai/gpt-oss-20b,5,supported,"['LLM stands for Large Language Model', 'LLM is an AI system that learns to understand, generate, and manipulate human language', 'LLM is trained on massive amounts of text data', 'LLM can perform tasks such as text generation, summarization, translation, question answering, code generation, and creative writing', 'LLM architecture is typically transformer‑based', 'LLM training objective is to predict the next word or token', 'LLM parameters range from millions to hundreds of billions', 'LLM can be used in domains like customer support, content creation, education, software development, research, and accessibility', 'LLMs do not possess true comprehension or consciousness', 'LLMs can hallucinate facts, reflect biases, and may produce nonsensical outputs', 'Ethical considerations include bias, privacy, safety, alignment, and computational cost']",[],[],"The actual answer expands upon the brief definition in the reference but remains fully consistent with it. All claims made in the actual answer are either directly supported by the reference or are additional factual details that do not contradict the reference. Therefore, the answer is considered fully supported."

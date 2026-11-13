@@ -1,0 +1,43 @@
+
+# API keys and secrets
+.env
+.env.*
+!.env.example
+secrets.json
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+env/
+
+# Jupyter and Colab
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Frontend dependencies and builds
+node_modules/
+dist/
+build/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Large model files
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx

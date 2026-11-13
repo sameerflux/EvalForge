@@ -1,0 +1,17 @@
+{
+    "experiment_id": "EXP-001",
+    "run_id": "375f0bfe-f4fc-45c8-8944-aec33cb8b91d",
+    "model_name": "openai/gpt-oss-20b",
+    "provider": "Groq",
+    "dataset": "data/raw/evaluation_dataset.csv",
+    "total_questions": 20,
+    "timestamp": "2026-11-13T13:19:41.869139+00:00",
+    "metrics": {
+        "average_token_f1": 0.0804,
+        "average_semantic_similarity": 0.5482,
+        "average_llm_judge_score": 5.0
+    },
+    "reports": {
+        "unified_report": "reports/unified_evaluation_report.csv"
+    }
+}

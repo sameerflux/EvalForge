@@ -1,0 +1,1311 @@
+id,category,question,expected_answer,actual_response,score,passed,model_name,latency_seconds,prompt_tokens,completion_tokens,token_f1_score,semantic_score,judge_score,judge_reason,judge_verdict,f1_verdict,semantic_verdict
+1,Python,What is Python?,"Python is a high-level, interpreted programming language.","**Python** is a high‑level, interpreted programming language known for its readability and simplicity. Created by Guido van Rossum and first released in 1991, Python emphasizes clear syntax (using indentation to define code blocks) and a philosophy of “batteries‑included,” meaning the standard library provides many useful modules out of the box.
+
+### Key characteristics
+| Feature | Description |
+|---------|-------------|
+| **Interpreted** | Code is executed line‑by‑line by the Python interpreter; no separate compilation step is required. |
+| **Dynamic typing** | Variable types are inferred at runtime, allowing rapid prototyping. |
+| **Readability** | Clean, English‑like syntax makes it easy for beginners and promotes maintainable code. |
+| **Extensive standard library** | Modules for file I/O, networking, web services, data serialization, testing, and more. |
+| **Cross‑platform** | Runs on Windows, macOS, Linux, and many other operating systems. |
+| **Large ecosystem** | Thousands of third‑party packages (via PyPI) for web development, data science, machine learning, automation, etc. |
+| **Multi‑paradigm** | Supports procedural, object‑oriented, and functional programming styles. |
+
+### Common uses
+- **Web development** (e.g., Django, Flask)
+- **Data analysis & scientific computing** (e.g., pandas, NumPy, SciPy)
+- **Machine learning & AI** (e.g., TensorFlow, PyTorch, scikit‑learn)
+- **Automation & scripting** (system admin tasks, testing, build pipelines)
+- **Desktop GUI applications** (e.g., Tkinter, PyQt)
+- **Embedded scripting** (e.g., in games, Blender, Autodesk Maya)
+
+### Example code
+```python
+# A simple Python program that prints the first 10 Fibonacci numbers
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        print(a, end=' ')
+        a, b = b, a + b
+
+fibonacci(10)   # Output: 0 1 1 2 3 5 8 13 21 34
+```
+
+Python’s combination of ease of learning, powerful libraries, and active community makes it a popular choice for both beginners and seasoned developers across many domains.",,,openai/gpt-oss-120b,1.345,87,535,0.0561,0.7198,5,"The answer correctly states that Python is a high‑level, interpreted programming language and expands on this with accurate additional details, remaining fully relevant and covering the expected answer.",PASS,FAIL,PASS
+2,Python,What is a Python list?,"A list is an ordered, mutable collection of elements.","A **Python list** is a built‑in, ordered collection type that can hold a sequence of items.  
+
+### Key characteristics
+| Feature | Description |
+|---------|-------------|
+| **Ordered** | Elements retain the order in which they were added; you can access them by their index (starting at 0). |
+| **Mutable** | You can change, add, or remove items after the list is created. |
+| **Heterogeneous** | A single list can contain objects of different types (ints, strings, other lists, custom objects, etc.). |
+| **Dynamic size** | Lists grow or shrink automatically; you don’t need to pre‑declare a length. |
+| **Iterable** | You can loop over a list with `for`, use comprehensions, or apply many built‑in functions (`len`, `sum`, `sorted`, …). |
+
+### Basic syntax
+```python
+# Creating a list
+my_list = [1, 2, 3]               # list of integers
+mixed = ['apple', 42, 3.14, True] # heterogeneous list
+
+# Accessing elements
+first = my_list[0]   # 1
+last  = my_list[-1]  # 3 (negative index counts from the end)
+
+# Slicing (sub‑list)
+sub = my_list[1:3]   # [2, 3]
+
+# Modifying
+my_list.append(4)    # [1, 2, 3, 4]
+my_list.insert(0, 0) # [0, 1, 2, 3, 4]
+my_list[2] = 99      # [0, 1, 99, 3, 4]
+my_list.remove(99)   # [0, 1, 3, 4]
+
+# Other common operations
+len(my_list)          # 4
+sum([1, 2, 3])        # 6
+sorted([3, 1, 2])     # [1, 2, 3]
+```
+
+### Common use‑cases
+- Storing a collection of items that you need to iterate over.
+- Building stacks (`append`/`pop`) or queues (`append`/`pop(0)`).
+- Collecting results from a computation before further processing.
+- Representing matrices as lists of lists, e.g., `matrix = [[1,2],[3,4]]`.
+
+In short, a Python list is a flexible, easy‑to‑use container for ordered data that you can modify at runtime.",,,openai/gpt-oss-120b,1.4344,89,581,0.0578,0.5766,5,"The answer correctly states that a Python list is an ordered, mutable collection of elements and provides accurate additional details such as heterogeneity, dynamic sizing, and typical operations. It fully satisfies the expected answer and adds relevant, factual information.",PASS,FAIL,FAIL
+3,Python,What is a dictionary in Python?,A dictionary stores data as key-value pairs.,"A **dictionary** in Python is a built‑in, mutable data structure that stores **key‑value pairs**. It is also called an *associative array*, *hash map*, or *hash table* in other languages.
+
+### Core Characteristics
+| Feature | Description |
+|---------|-------------|
+| **Unordered (as of Python 3.7 insertion order is preserved)** | Items are not accessed by position but by their unique keys. |
+| **Mutable** | You can add, remove, or change entries after the dictionary is created. |
+| **Fast look‑ups** | Average‑case O(1) time for retrieving, inserting, or deleting a value by its key, thanks to hashing. |
+| **Keys must be hashable** | Typical keys are strings, numbers, or tuples of immutable objects. |
+| **Values can be any object** | Including other dictionaries, lists, functions, etc. |
+
+### Basic Syntax
+
+```python
+# Literal syntax (curly braces)
+person = {
+    ""name"": ""Alice"",
+    ""age"": 30,
+    ""is_employee"": True
+}
+
+# Using the dict() constructor
+settings = dict(theme=""dark"", timeout=120)
+```
+
+### Common Operations
+
+```python
+# Access a value (raises KeyError if key missing)
+age = person[""age""]          # 30
+
+# Safe access with a default
+city = person.get(""city"", ""Unknown"")  # ""Unknown""
+
+# Add or update an entry
+person[""city""] = ""New York""   # adds new key
+person[""age""] = 31            # updates existing key
+
+# Delete an entry
+del person[""is_employee""]     # removes the key/value pair
+# or
+removed = person.pop(""city"")  # returns the removed value
+
+# Check for a key
+if ""name"" in person:
+    print(""Name is present"")
+
+# Iterate over keys, values, or items
+for key in person:                # iterates keys
+    print(key)
+
+for value in person.values():     # iterates values
+    print(value)
+
+for key, value in person.items(): # iterates (key, value) tuples
+    print(key, ""->"", value)
+
+# Get the number of entries
+len(person)   # 3
+```
+
+### Nested Dictionaries
+
+```python
+company = {
+    ""departments"": {
+        ""engineering"": {""head"": ""Bob"", ""employees"": 25},
+        ""hr"": {""head"": ""Carol"", ""employees"": 8}
+    },
+    ""location"": ""San Francisco""
+}
+
+# Access nested data
+eng_head = company[""departments""][""engineering""][""head""]  # ""Bob""
+```
+
+### Dictionary Comprehensions
+
+```python
+# Create a dict mapping numbers to their squares
+squares = {x: x**2 for x in range(5)}   # {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+```
+
+### When to Use a Dictionary
+
+- You need **fast look‑ups** by a custom identifier (e.g., usernames, IDs).
+- The relationship between items is naturally **key → value**.
+- You want to **store heterogeneous data** (different types) under a single container.
+- You need to **modify** the collection frequently (add/remove entries).
+
+### Performance Note
+
+Because dictionaries rely on hashing, the **hashability** of keys is crucial. Mutable objects like lists or other dictionaries cannot be used as keys, but immutable equivalents (e.g., tuples) can.
+
+---
+
+**In short:** a Python dictionary is a versatile, hash‑based collection that maps unique, hashable keys to arbitrary values, offering constant‑time access and flexible manipulation.",,,openai/gpt-oss-120b,1.9209,90,832,0.0372,0.691,5,"The answer correctly states that a dictionary stores data as key‑value pairs, which matches the expected answer. It also provides additional accurate information, but that does not detract from correctness or relevance.",PASS,FAIL,PASS
+4,Python,What is the difference between a list and a tuple?,Lists are mutable while tuples are immutable.,"**Short answer**
+
+- **List** – mutable, written with square brackets `[]`, can be changed (add, remove, reorder items).  
+- **Tuple** – immutable, written with parentheses `()` (or just commas), cannot be changed after creation.
+
+---
+
+## Detailed comparison
+
+| Feature | List | Tuple |
+|---------|------|-------|
+| **Mutability** | **Mutable** – you can modify, append, delete, or reorder elements. | **Immutable** – once created, its contents cannot be changed. |
+| **Syntax** | `my_list = [1, 2, 3]` | `my_tuple = (1, 2, 3)` (or `my_tuple = 1, 2, 3`) |
+| **Typical use case** | Collections of items that may need to grow, shrink, or be reordered (e.g., building up results, dynamic data). | Fixed collections of heterogeneous items, records, or constants (e.g., coordinates, database rows, function return values). |
+| **Performance** | Slightly slower for creation and iteration because of extra bookkeeping for mutability. | Faster to create and iterate; smaller memory footprint because they don’t need space for dynamic resizing. |
+| **Methods available** | Many mutating methods: `append()`, `extend()`, `insert()`, `remove()`, `pop()`, `clear()`, `sort()`, `reverse()`, plus non‑mutating ones like `count()`, `index()`. | Only non‑mutating methods: `count()`, `index()`. No `append`, `pop`, etc. |
+| **Hashability** | Not hashable → cannot be used as dictionary keys or set elements. | If all elements inside are hashable, the tuple itself is hashable → can be a dict key or set element. |
+| **Slicing / Indexing** | Same as tuples – both support `seq[i]`, `seq[i:j]`, negative indices, step slicing, etc. | Same as lists. |
+| **Copying** | `list_copy = my_list[:]` creates a shallow copy; `list_copy = my_list.copy()` also works. | `tuple_copy = my_tuple` is enough because tuples are immutable (no need for a separate copy). |
+| **Memory layout** | Stores a dynamic array of references plus extra overhead for size/capacity. | Stores a fixed-size array of references; no extra capacity field. |
+| **When to choose which?** | - You need to modify the collection later.<br>- You expect the size to change frequently.<br>- You need list‑specific methods (e.g., `sort`). | - The collection should stay constant (e.g., coordinates, configuration constants).<br>- You want to guarantee that the data won’t be altered accidentally.<br>- You need to use the collection as a dictionary key or set element. |
+
+---
+
+## Example code
+
+```python
+# List – mutable
+numbers = [1, 2, 3]
+numbers.append(4)          # [1, 2, 3, 4]
+numbers[0] = 10            # [10, 2, 3, 4]
+numbers.pop()              # returns 4, list becomes [10, 2, 3]
+
+# Tuple – immutable
+point = (10, 20)
+# point[0] = 5   # ❌ raises TypeError
+# point.append(30)  # ❌ raises AttributeError
+
+# Using a tuple as a dict key
+lookup = { (10, 20): ""origin"", (0, 0): ""center"" }
+print(lookup[point])   # ""origin""
+```
+
+---
+
+## Quick “cheat sheet”
+
+- **Use a list** when you need **changeable** sequences.
+- **Use a tuple** when you need an **unchangeable** sequence, want **hashability**, or want to signal “this data is a fixed record”.
+
+Both types support iteration, slicing, concatenation (`+`), repetition (`*`), and membership testing (`in`). The choice mainly hinges on mutability, performance, and intent.",,,openai/gpt-oss-120b,2.166,94,924,0.0264,0.6209,5,"The answer correctly states that lists are mutable and tuples are immutable, which matches the expected answer. It also provides additional accurate information about syntax, use cases, performance, methods, hashability, and examples, all of which are relevant and factually correct. No incorrect or irrelevant content is present.",PASS,FAIL,FAIL
+5,Python,What does len() do in Python?,It returns the number of items in an object.,"**`len()` in Python**
+
+`len()` is a built‑in function that returns the number of items (the *length*) of a container object.  
+
+```python
+length = len(some_object)
+```
+
+### What kinds of objects work with `len()`?
+
+| Type / Example | What `len()` returns |
+|----------------|----------------------|
+| **String** `s = ""hello""` | `5` (number of characters) |
+| **List** `lst = [1, 2, 3]` | `3` (number of elements) |
+| **Tuple** `t = (1, 2)` | `2` |
+| **Dictionary** `d = {'a':1, 'b':2}` | `2` (number of keys) |
+| **Set / frozenset** | number of distinct elements |
+| **bytes / bytearray** | number of bytes |
+| **range** `range(10)` | `10` |
+| **Custom class** that defines `__len__(self)` | whatever that method returns |
+
+If the object does **not** implement the special method `__len__`, calling `len()` raises a `TypeError`:
+
+```python
+class Foo: pass
+len(Foo())          # → TypeError: object of type 'Foo' has no len()
+```
+
+### How does it work under the hood?
+
+When you call `len(obj)`, Python internally does:
+
+```python
+obj.__len__()
+```
+
+For built‑in container types this method is implemented in C and runs in **O(1)** time (constant time), because the size is stored as part of the object’s header.
+
+### Quick examples
+
+```python
+# strings
+>>> len(""OpenAI"")
+6
+
+# lists
+>>> fruits = [""apple"", ""banana"", ""cherry""]
+>>> len(fruits)
+3
+
+# dictionaries (counts keys)
+>>> ages = {""Alice"": 30, ""Bob"": 25}
+>>> len(ages)
+2
+
+# custom class
+class Counter:
+    def __init__(self, items):
+        self.items = items
+    def __len__(self):
+        return len(self.items)
+
+c = Counter([1, 2, 3, 4])
+>>> len(c)
+4
+```
+
+### Common pitfalls
+
+* **Empty containers** – `len([])`, `len("""")`, `len({})` all return `0`.
+* **Counting characters vs. bytes** – For Unicode strings `len()` counts *characters*, not the number of bytes in the underlying UTF‑8 representation. Use `len(s.encode('utf‑8'))` if you need the byte count.
+* **Iterables that aren’t sized** – Objects like generators, file objects, or `itertools` iterators don’t have a length; you must materialize them (e.g., `list(gen)`) before you can call `len()`.
+
+---
+
+**In short:** `len()` is the standard way to ask “how many items are in this container?” for any object that defines a length. It’s simple, fast, and works across strings, sequences, mappings, sets, and any user‑defined class that implements `__len__`.",,,openai/gpt-oss-120b,1.7908,91,763,0.0458,0.4988,5,"The answer correctly states that len() returns the number of items in an object, and it provides additional relevant details without including irrelevant information. It fully satisfies the expected answer.",PASS,FAIL,FAIL
+6,Machine Learning,What is machine learning?,Machine learning enables computers to learn patterns from data.,"**Machine learning (ML)** is a subfield of artificial intelligence (AI) that focuses on developing algorithms and statistical models that enable computers to **learn from data** and improve their performance on a specific task without being explicitly programmed for every possible scenario.
+
+### Core Idea
+- **Learning from examples:** Instead of writing explicit rules, we feed the system a collection of examples (data) and let it infer patterns or relationships.
+- **Generalization:** The goal is to build a model that performs well not only on the training data but also on new, unseen data.
+
+### How It Works (High‑level steps)
+
+| Step | Description |
+|------|--------------|
+| 1️⃣ **Data collection** | Gather raw data relevant to the problem (images, text, sensor readings, etc.). |
+| 2️⃣ **Pre‑processing** | Clean, normalize, and transform data (e.g., handling missing values, scaling features). |
+| 3️⃣ **Model selection** | Choose an algorithm (linear regression, decision tree, neural network, etc.) that suits the task. |
+| 4️⃣ **Training** | Feed the data to the algorithm; it adjusts internal parameters to minimize a loss (error) function. |
+| 5️⃣ **Evaluation** | Test the trained model on a separate validation/test set to assess accuracy, precision, recall, etc. |
+| 6️⃣ **Deployment & monitoring** | Use the model in production and continuously monitor its performance, updating it as needed. |
+
+### Main Types of Machine Learning
+
+| Category | What it does | Typical algorithms | Example applications |
+|----------|--------------|--------------------|----------------------|
+| **Supervised learning** | Learns a mapping from inputs **X** to known outputs **Y** (labels). | Linear regression, logistic regression, support‑vector machines, random forests, neural networks | Spam detection, image classification, house‑price prediction |
+| **Unsupervised learning** | Finds structure in data **without explicit labels**. | K‑means clustering, hierarchical clustering, principal component analysis (PCA), autoencoders | Customer segmentation, anomaly detection, dimensionality reduction |
+| **Semi‑supervised learning** | Uses a small amount of labeled data plus a large amount of unlabeled data. | Graph‑based methods, self‑training, co‑training | Medical image analysis where labeling is expensive |
+| **Reinforcement learning (RL)** | An **agent** learns to make sequential decisions by receiving rewards/punishments from an environment. | Q‑learning, Deep Q‑Network (DQN), policy gradients, Proximal Policy Optimization (PPO) | Game playing (e.g., AlphaGo), robotics, autonomous driving |
+| **Self‑supervised learning** | Generates its own supervisory signal from the raw data (often used in NLP and vision). | Contrastive learning, masked language modeling (BERT) | Language models, representation learning for images |
+
+### Key Concepts & Terminology
+
+- **Feature:** A measurable property or attribute used as input (e.g., pixel intensity, word count).
+- **Model:** The mathematical representation learned from data (e.g., a set of weights in a neural network).
+- **Loss/Cost function:** Quantifies how far predictions are from true values; the model tries to minimize it.
+- **Overfitting:** When a model captures noise in the training data and performs poorly on new data.
+- **Underfitting:** When a model is too simple to capture the underlying pattern.
+- **Regularization:** Techniques (L1/L2 penalties, dropout) that discourage overfitting.
+- **Cross‑validation:** A method to assess model performance more reliably by rotating training/validation splits.
+
+### Popular Algorithms (Brief)
+
+| Algorithm | Typical Use‑case | Strengths | Weaknesses |
+|-----------|------------------|-----------|------------|
+| **Linear regression** | Predicting continuous values | Simple, interpretable | Assumes linear relationships |
+| **Logistic regression** | Binary classification | Probabilistic output, fast | Limited to linear decision boundaries |
+| **Decision trees / Random forests** | Tabular data, mixed feature types | Handles non‑linearities, robust to outliers | Can be large; random forests lose interpretability |
+| **Support Vector Machines (SVM)** | High‑dimensional classification | Effective with clear margins | Computationally heavy on large datasets |
+| **k‑Nearest Neighbors (k‑NN)** | Simple classification/regression | No training phase, intuitive | Slow inference, sensitive to feature scaling |
+| **Neural networks / Deep learning** | Images, speech, text, complex patterns | Highly expressive, state‑of‑the‑art performance | Requires lots of data & compute, less interpretable |
+| **Gradient boosting (XGBoost, LightGBM)** | Structured data competitions | Excellent accuracy, handles missing data | More hyper‑parameter tuning needed |
+
+### Real‑World Examples
+
+- **Recommendation systems:** Netflix and Amazon suggest movies/products based on past behavior (collaborative filtering, matrix factorization).
+- **Computer vision:** Self‑driving cars detect pedestrians and traffic signs using convolutional neural networks (CNNs).
+- **Natural language processing:** Chatbots, translation, and sentiment analysis rely on transformer models like BERT or GPT.
+- **Healthcare:** Predicting disease risk from electronic health records, analyzing medical images for tumor detection.
+- **Finance:** Fraud detection, algorithmic trading, credit scoring.
+
+### A Very Simple Illustration (Linear Regression)
+
+Suppose you have data on house size (square feet) and price:
+
+| Size (sq ft) | Price ($1000) |
+|--------------|---------------|
+| 800          | 150           |
+| 1200         | 210           |
+| 1500         | 260           |
+| 2000         | 340           |
+
+A linear regression model learns a line `price = w * size + b`. After training, you might obtain `w ≈ 0.15` and `b ≈ 30`. Then for a 1700‑sq‑ft house, the model predicts:
+
+```
+price = 0.15 * 1700 + 30 ≈ 285 (thousand dollars)
+```
+
+The model “learned” the relationship from the data rather than being manually programmed with a rule.
+
+### Getting Started (Practical Tips)
+
+1. **Pick a problem** you care about (e.g., classify emails as spam/not‑spam).
+2. **Collect and label data** (or find an open dataset).
+3. **Choose a baseline model** (logistic regression for classification is a good start).
+4. **Use a library** like **scikit‑learn** (Python) for quick prototyping.
+5. **Evaluate** with metrics appropriate to the task (accuracy, F1‑score, ROC‑AUC, etc.).
+6. **Iterate:** try feature engineering, more complex models, hyper‑parameter tuning.
+7. **Deploy** using tools like Flask, FastAPI, or cloud services (AWS SageMaker, Azure ML).
+
+---
+
+**In short:** Machine learning equips computers with the ability to infer patterns from data and make predictions or decisions, enabling a wide range of modern applications—from voice assistants to autonomous vehicles.",,,openai/gpt-oss-120b,3.4688,88,1541,0.0181,0.6453,5,"The answer accurately states that machine learning enables computers to learn patterns from data, and it expands on this with correct, relevant details. It fully covers the expected answer and provides additional factual information without including irrelevant content.",PASS,FAIL,FAIL
+7,Machine Learning,What is supervised learning?,Supervised learning trains models using labeled data.,"**Supervised learning** is a type of machine‑learning paradigm in which a model is trained on a dataset that contains **input–output pairs** (also called **features** and **labels**). The goal is for the model to learn a mapping from the inputs to the correct outputs so that it can predict the label for new, unseen inputs.
+
+---
+
+### How It Works
+
+| Step | Description |
+|------|-------------|
+| **1. Collect labeled data** | Gather a dataset where each example includes both the input data (e.g., an image, a text sentence, sensor readings) and the desired output (e.g., a class label, a numeric value). |
+| **2. Split the data** | Typically divide into training, validation, and test sets (e.g., 70 % train, 15 % validation, 15 % test). |
+| **3. Choose a model** | Select a hypothesis space (e.g., linear regression, decision tree, neural network). |
+| **4. Define a loss function** | A metric that quantifies how far the model’s predictions are from the true labels (e.g., mean‑squared error for regression, cross‑entropy for classification). |
+| **5. Train (optimize) the model** | Use an optimization algorithm (gradient descent, stochastic gradient descent, etc.) to adjust the model’s parameters so that the loss on the training set is minimized. |
+| **6. Validate & tune** | Evaluate performance on the validation set to tune hyper‑parameters and avoid overfitting. |
+| **7. Test** | Measure final performance on the held‑out test set to estimate how the model will behave on new data. |
+
+---
+
+### Types of Supervised Tasks
+
+| Task | Output Type | Typical Algorithms |
+|------|-------------|--------------------|
+| **Classification** | Discrete class label (e.g., “cat” vs. “dog”) | Logistic regression, Support Vector Machines, Random Forests, Convolutional Neural Networks |
+| **Regression** | Continuous numeric value (e.g., house price) | Linear regression, Gradient Boosting Regressors, Feed‑forward Neural Networks |
+| **Sequence labeling** | Label for each element in a sequence (e.g., part‑of‑speech tagging) | Conditional Random Fields, Recurrent Neural Networks, Transformers |
+| **Object detection / segmentation** | Structured outputs (bounding boxes, masks) | Faster R‑CNN, YOLO, Mask R‑CNN |
+
+---
+
+### Why It’s Called “Supervised”
+
+The term **“supervised”** comes from the analogy of a teacher (the supervisor) providing the correct answer for each training example. The model receives feedback (the loss) that tells it how well it is doing, allowing it to adjust its internal parameters accordingly.
+
+---
+
+### Advantages
+
+* **Clear performance metric** – because true labels are known, you can directly measure accuracy, precision, recall, RMSE, etc.
+* **Fast convergence** – the explicit error signal often leads to quicker learning compared to unsupervised methods.
+* **Interpretability** – many supervised models (e.g., linear models, decision trees) provide insight into which features drive predictions.
+
+---
+
+### Limitations
+
+* **Requires labeled data** – obtaining high‑quality labels can be expensive, time‑consuming, or infeasible for some domains.
+* **Risk of overfitting** – if the model is too complex relative to the amount of data, it may memorize the training set rather than learn general patterns.
+* **Bias from labeling** – systematic errors or subjectivity in the labeling process can propagate into the model.
+
+---
+
+### Common Real‑World Applications
+
+* **Spam detection** – classify emails as “spam” or “not spam.”
+* **Medical diagnosis** – predict disease presence from imaging or lab results.
+* **Price prediction** – estimate house or stock prices.
+* **Speech recognition** – map audio waveforms to transcribed text.
+* **Sentiment analysis** – determine positive/negative sentiment in reviews.
+
+---
+
+### Quick Example (Binary Classification)
+
+Suppose you have a dataset of 10,000 images of handwritten digits, each labeled with the digit (0‑9). You want a model that, given a new image, predicts the correct digit.
+
+1. **Inputs**: 28 × 28 pixel values (flattened to a 784‑dimensional vector).  
+2. **Labels**: Integer 0–9 (often one‑hot encoded).  
+3. **Model**: A simple multilayer perceptron or a convolutional neural network.  
+4. **Loss**: Categorical cross‑entropy.  
+5. **Training**: Use stochastic gradient descent to minimize loss on the training set.  
+6. **Evaluation**: Compute accuracy on a held‑out test set; aim for > 95 % accuracy.
+
+---
+
+### Bottom Line
+
+Supervised learning is the go‑to approach when you have **paired input–output data** and a clear objective to predict those outputs for new inputs. It underpins many of the AI systems we interact with daily, from recommendation engines to autonomous vehicles.",,,openai/gpt-oss-120b,2.6558,88,1115,0.015,0.5241,5,"The answer correctly defines supervised learning as training models with labeled data, explains the process, types, and applications, fully covering the expected answer without irrelevant content.",PASS,FAIL,FAIL
+8,Machine Learning,What is overfitting?,Overfitting occurs when a model learns training data too closely and performs poorly on unseen data.,"**Overfitting** is a modeling error that occurs when a machine‑learning algorithm captures not only the underlying pattern in the training data but also the random noise or idiosyncrasies specific to that data set. As a result, the model performs very well on the data it was trained on but poorly on new, unseen data.
+
+---
+
+## Why It Happens
+- **Too much model capacity**: Complex models (deep neural nets, high‑degree polynomials, many decision‑tree splits) can represent very intricate functions.
+- **Insufficient training data**: With few examples, the model can “memorize” them instead of learning generalizable trends.
+- **Excessive training**: Training for too many epochs or iterations lets the model keep fitting the training noise.
+- **No regularization**: Lack of constraints (e.g., weight decay, dropout) allows the model to take extreme parameter values.
+
+---
+
+## Visual Intuition
+Imagine fitting a curve to a set of points:
+
+- **Underfitting**: A straight line that misses most points (high bias, low variance).
+- **Good fit**: A smooth curve that follows the overall trend while ignoring small fluctuations (balanced bias‑variance).
+- **Overfitting**: A wiggly curve that passes through every single point, including outliers (low bias, high variance).
+
+---
+
+## Symptoms & Detection
+| Symptom | How to Detect |
+|---------|----------------|
+| Training error ≪ validation/test error | Plot learning curves: training loss keeps dropping while validation loss starts rising. |
+| Model performs well on training set but poorly on a hold‑out set | Evaluate on a separate test set or use cross‑validation. |
+| High variance in predictions for similar inputs | Check prediction stability on perturbed data. |
+
+---
+
+## Common Remedies
+
+| Technique | What It Does | Typical Use Cases |
+|-----------|--------------|-------------------|
+| **More data** | Provides a richer representation of the true distribution, diluting noise. | When data collection is feasible. |
+| **Simplify the model** | Reduce number of parameters (e.g., fewer layers, lower tree depth). | When the current model is overly complex for the problem size. |
+| **Regularization** | Adds a penalty to large weights (L1/L2), encourages sparsity (L1), or randomly drops units (dropout). | Neural nets, linear models, logistic regression. |
+| **Early stopping** | Stops training when validation loss stops improving. | Iterative training algorithms (gradient descent, boosting). |
+| **Cross‑validation** | Provides a more reliable estimate of generalization error, guiding hyper‑parameter choices. | Model selection and hyper‑parameter tuning. |
+| **Ensemble methods** | Combine many weak learners (bagging, random forests) to reduce variance. | Tree‑based models, boosting. |
+| **Data augmentation** | Generates synthetic variations (rotations, flips, noise) to enlarge the training set. | Image, audio, text tasks. |
+| **Feature selection / engineering** | Removes irrelevant/noisy features that can mislead the model. | High‑dimensional tabular data. |
+
+---
+
+## Quick Checklist to Spot Overfitting
+
+1. **Learning curves**: Plot training vs. validation loss/accuracy over epochs. Divergence → overfitting.
+2. **Performance gap**: Large difference between training and validation metrics.
+3. **Cross‑validation variance**: High variance across folds suggests the model is sensitive to data splits.
+4. **Complexity vs. data size**: Rule of thumb – the number of trainable parameters should be substantially lower than the number of independent training examples.
+
+---
+
+## Example (Python / scikit‑learn)
+
+```python
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
+X, y = load_boston(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Overly complex model: degree‑10 polynomial
+poly = PolynomialFeatures(degree=10, include_bias=False)
+X_train_poly = poly.fit_transform(X_train)
+X_test_poly  = poly.transform(X_test)
+
+model = LinearRegression()
+model.fit(X_train_poly, y_train)
+
+train_err = mean_squared_error(y_train, model.predict(X_train_poly))
+test_err  = mean_squared_error(y_test,  model.predict(X_test_poly))
+
+print(f""Train MSE: {train_err:.2f}"")
+print(f""Test  MSE: {test_err:.2f}"")
+```
+
+Typical output:
+
+```
+Train MSE: 0.02   # almost zero → model memorized training data
+Test  MSE: 45.7   # much larger → poor generalization (overfitting)
+```
+
+Reducing the polynomial degree, adding regularization (`Ridge`/`Lasso`), or using cross‑validation to pick the optimal degree will mitigate the overfitting.
+
+---
+
+### TL;DR
+Overfitting = **model learns the training data too well, including its noise, and fails to generalize**. Detect it by a large gap between training and validation performance, and combat it with more data, simpler models, regularization, early stopping, cross‑validation, and other techniques that reduce model variance.",,,openai/gpt-oss-120b,2.6706,89,1185,0.0442,0.7326,5,"The answer accurately defines overfitting as a model learning training data too closely and performing poorly on unseen data, matching the expected answer. It also provides additional relevant details, but no irrelevant information. Verdict: PASS",PASS,FAIL,PASS
+9,Machine Learning,What is a classification problem?,Classification predicts discrete categories or labels.,"**Classification** is a type of supervised‑learning problem in which the goal is to assign a discrete label (or a set of labels) to each input example. In other words, given a set of features describing an observation, a classification model predicts which *category* that observation belongs to.
+
+---
+
+## Core Elements
+
+| Element | Description |
+|---------|-------------|
+| **Input (features)** | A vector \(x = (x_1, x_2, …, x_p)\) that describes the observation (e.g., pixel values of an image, words in a document, sensor readings). |
+| **Output (label)** | A categorical variable \(y\) that takes values from a finite set of classes \(\mathcal{C} = \{c_1, c_2, …, c_K\}\). |
+| **Training data** | A collection of labeled pairs \(\{(x^{(i)}, y^{(i)})\}_{i=1}^N\) used to learn a mapping \(f: X \rightarrow \mathcal{C}\). |
+| **Model** | A function (e.g., logistic regression, decision tree, neural network) that approximates the true mapping from features to class. |
+| **Loss / objective** | A measure of how well the model’s predictions match the true labels (e.g., cross‑entropy loss). |
+| **Prediction** | For a new input \(x_{\text{new}}\), the model outputs either a single class (hard decision) or a probability distribution over classes (soft decision). |
+
+---
+
+## Types of Classification Problems
+
+| Type | Description | Typical examples |
+|------|--------------|------------------|
+| **Binary classification** | Two possible classes (often denoted 0/1 or negative/positive). | Spam vs. non‑spam email, fraud vs. legitimate transaction. |
+| **Multiclass classification** | One of \(K > 2\) mutually exclusive classes. | Handwritten digit recognition (0‑9), animal species identification. |
+| **Multilabel classification** | Each instance can belong to *multiple* classes simultaneously. | Tagging a news article with several topics, detecting multiple objects in an image. |
+| **Ordinal classification** | Classes have a natural order (but distances are not necessarily equal). | Movie ratings (1‑5 stars), disease stages. |
+| **Imbalanced classification** | One or a few classes are much rarer than the others. | Rare disease detection, credit‑card fraud. Special techniques (resampling, cost‑sensitive learning) are often needed. |
+
+---
+
+## Typical Workflow
+
+1. **Data collection & labeling** – Gather examples and assign the correct class to each.
+2. **Pre‑processing** – Clean data, handle missing values, encode categorical variables, scale/normalize numeric features, extract features (e.g., TF‑IDF for text, CNN features for images).
+3. **Train‑test split** – Separate data into training, validation, and test sets (or use cross‑validation).
+4. **Model selection** – Choose an algorithm (logistic regression, SVM, random forest, deep neural network, etc.) and its hyper‑parameters.
+5. **Training** – Optimize the model’s parameters to minimize a classification loss (commonly cross‑entropy).
+6. **Evaluation** – Use metrics appropriate for the problem (see below) on validation/test data.
+7. **Deployment** – Export the trained model for inference on new data.
+8. **Monitoring & maintenance** – Track performance over time; retrain if data distribution drifts.
+
+---
+
+## Common Evaluation Metrics
+
+| Metric | When to use | Formula (binary case) |
+|--------|-------------|-----------------------|
+| **Accuracy** | Balanced classes | \(\frac{\text{TP} + \text{TN}}{\text{Total}}\) |
+| **Precision** | Cost of false positives high | \(\frac{\text{TP}}{\text{TP} + \text{FP}}\) |
+| **Recall (Sensitivity)** | Cost of false negatives high | \(\frac{\text{TP}}{\text{TP} + \text{FN}}\) |
+| **F1‑score** | Balance precision & recall | \(2 \cdot \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}\) |
+| **ROC‑AUC** | Binary, wants ranking quality | Area under the Receiver Operating Characteristic curve |
+| **PR‑AUC** | Imbalanced data | Area under the Precision‑Recall curve |
+| **Confusion matrix** | Visual diagnostic | Shows TP, FP, FN, TN for each class |
+| **Log‑loss / Cross‑entropy** | Probabilistic predictions | \(-\frac{1}{N}\sum_i \sum_{k=1}^K y_{ik}\log \hat{p}_{ik}\) |
+
+For multiclass problems, many of these metrics are extended via “macro‑averaging” (average over classes) or “micro‑averaging” (aggregate counts before computing).
+
+---
+
+## Example: Handwritten Digit Recognition
+
+1. **Input** – 28 × 28 grayscale pixel values (784 features).  
+2. **Labels** – Digits 0‑9 (10 classes).  
+3. **Model** – Convolutional Neural Network (CNN).  
+4. **Loss** – Categorical cross‑entropy.  
+5. **Metric** – Accuracy (often > 99 % on MNIST).  
+
+---
+
+## Key Take‑aways
+
+- A **classification problem** asks “*Which category does this example belong to?*”.
+- It is **supervised**: you need labeled examples to train the model.
+- The output is **discrete**, not continuous (contrast with regression).
+- Success depends on good data, appropriate model choice, and proper evaluation metrics—especially when classes are imbalanced or when multiple labels are possible.
+
+If you have a specific domain or dataset in mind, I can walk through a concrete example or suggest suitable algorithms and metrics. Just let me know!",,,openai/gpt-oss-120b,2.9873,89,1340,0.0142,0.5806,5,"The answer accurately defines classification as predicting discrete categories or labels, provides correct details, and fully covers the expected content without irrelevant information.",PASS,FAIL,FAIL
+10,Machine Learning,What is regression?,Regression predicts continuous numerical values.,"**Regression** is a family of statistical and machine‑learning techniques used to model and quantify the relationship between one (or more) **input variables** (also called *features* or *predictors*) and a **continuous output variable** (also called the *target* or *response*).  
+
+In plain language, regression answers questions like:
+
+* “Given a house’s size, number of bedrooms, and location, what price should we expect?”
+* “How does a patient’s blood pressure change as a function of age and weight?”
+* “What will next month’s sales be based on advertising spend and seasonality?”
+
+The core idea is to find a function \(f\) that maps inputs \(\mathbf{x}\) to an output \(\hat{y}=f(\mathbf{x})\) such that the predicted values \(\hat{y}\) are as close as possible to the observed values \(y\) in the data you have.
+
+---
+
+## 1. Key Concepts
+
+| Concept | What it means |
+|---------|---------------|
+| **Dependent (target) variable** | The continuous quantity you want to predict (e.g., price, temperature). |
+| **Independent (predictor) variables** | The features you use to make the prediction (e.g., size, age). |
+| **Model** | The mathematical form of \(f\) (e.g., a straight line, a polynomial, a neural network). |
+| **Loss / Cost function** | A metric that measures how far predictions are from actual values (most common: **Mean Squared Error**). |
+| **Training / fitting** | The process of adjusting model parameters to minimize the loss on a set of known data. |
+| **Prediction / inference** | Using the fitted model to estimate the target for new, unseen inputs. |
+| **Assumptions** | Many regression methods assume things like linearity, independence of errors, homoscedasticity (constant variance), and normality of residuals. Violations affect interpretation and performance. |
+
+---
+
+## 2. Common Types of Regression
+
+| Type | Typical Use‑Case | Model Form | Key Characteristics |
+|------|------------------|------------|----------------------|
+| **Linear regression** | Simple relationships, quick baseline | \(\hat{y}= \beta_0 + \beta_1 x_1 + \dots + \beta_p x_p\) | Parameters \(\beta\) have closed‑form solution (ordinary least squares). Interpretable coefficients. |
+| **Multiple linear regression** | More than one predictor | Same as linear but with many \(x\)s | Handles multivariate data; still linear in parameters. |
+| **Polynomial regression** | Curved relationships | \(\hat{y}= \beta_0 + \beta_1 x + \beta_2 x^2 + \dots\) | Still linear in parameters; degree controls flexibility. |
+| **Ridge / Lasso regression** | High‑dimensional data, need regularization | Linear with penalty term \(\lambda\|\beta\|_2^2\) (ridge) or \(\lambda\|\beta\|_1\) (lasso) | Shrinks coefficients, reduces over‑fitting, performs variable selection (lasso). |
+| **Elastic Net** | Combines ridge & lasso benefits | Linear with both \(\ell_1\) and \(\ell_2\) penalties | Useful when predictors are correlated. |
+| **Logistic regression** | Binary classification (output is 0/1) | \(\hat{p}= \frac{1}{1+e^{-(\beta_0+\beta^T x)}}\) | Technically a *classification* model, but often taught alongside regression because it uses the same linear predictor. |
+| **Poisson regression** | Count data (e.g., number of events) | \(\log(\lambda)=\beta_0+\beta^T x\) | Models rates assuming Poisson distribution. |
+| **Quantile regression** | Estimate conditional quantiles (median, 90th percentile) | Minimizes asymmetric loss | Provides a fuller picture of the conditional distribution. |
+| **Generalized Linear Models (GLM)** | Various outcome distributions (Gaussian, Binomial, Poisson, Gamma) | Link function + linear predictor | Unifies many regression families. |
+| **Non‑parametric regression** (e.g., **k‑nearest neighbors**, **kernel regression**, **splines**) | When you don’t want to assume a specific functional form | Flexible, data‑driven | Often more computationally intensive; can over‑fit if not tuned. |
+| **Tree‑based regression** (Decision Trees, Random Forests, Gradient Boosting) | Complex, nonlinear relationships, interactions | Ensemble of decision rules | Handles mixed data types, robust to outliers, provides feature importance. |
+| **Neural‑network regression** | Large, high‑dimensional, possibly unstructured data (images, text) | Deep architectures with continuous output layer | Highly flexible; requires more data and careful regularization. |
+
+---
+
+## 3. How Linear Regression Works (A Quick Walk‑through)
+
+1. **Formulate the model**  
+   \[
+   y_i = \beta_0 + \beta_1 x_{i1} + \dots + \beta_p x_{ip} + \varepsilon_i,
+   \]
+   where \(\varepsilon_i\) are error terms.
+
+2. **Choose a loss function** – most commonly the **sum of squared residuals** (SSR):  
+   \[
+   \text{SSR}(\beta) = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2.
+   \]
+
+3. **Solve for the coefficients** that minimize SSR. In matrix notation:  
+   \[
+   \hat{\beta} = (X^\top X)^{-1} X^\top y,
+   \]
+   where \(X\) is the design matrix (including a column of 1’s for the intercept).
+
+4. **Assess fit** using metrics such as:
+   * **\(R^2\)** – proportion of variance explained.
+   * **Adjusted \(R^2\)** – penalizes adding irrelevant predictors.
+   * **Root Mean Squared Error (RMSE)** – average prediction error in original units.
+   * **Residual plots** – check for non‑linearity, heteroscedasticity, outliers.
+
+5. **Validate** with techniques like **cross‑validation**, **train‑test split**, or **bootstrapping** to ensure the model generalizes.
+
+---
+
+## 4. When to Use Regression
+
+| Situation | Recommended Approach |
+|-----------|----------------------|
+| **Simple, roughly linear relationship** with a few predictors | Ordinary Least Squares (OLS) linear regression. |
+| **Many correlated predictors** or risk of over‑fitting | Ridge, Lasso, or Elastic Net. |
+| **Non‑linear patterns** but still want interpretability | Polynomial regression, splines, or Generalized Additive Models (GAMs). |
+| **Complex interactions, high‑dimensional data** | Tree‑based methods (Random Forest, Gradient Boosting) or Neural Networks. |
+| **Outcome is a count** (e.g., number of calls) | Poisson or Negative Binomial regression. |
+| **Outcome is binary** (yes/no) | Logistic regression (or other classification models). |
+| **You need predictions for specific quantiles** (e.g., median house price) | Quantile regression. |
+
+---
+
+## 5. Common Pitfalls & How to Avoid Them
+
+| Pitfall | Why it hurts | Mitigation |
+|---------|--------------|------------|
+| **Violating linearity assumption** | Model will systematically mis‑predict. | Use residual plots; try polynomial terms, splines, or non‑parametric models. |
+| **Multicollinearity** (highly correlated predictors) | Inflates variance of coefficient estimates, making them unstable. | Check variance inflation factor (VIF); drop/recombine variables; use regularization (ridge). |
+| **Heteroscedasticity** (non‑constant error variance) | Standard errors become unreliable. | Transform the target (log, Box‑Cox); use weighted least squares; robust standard errors. |
+| **Outliers / influential points** | Can dominate the fit and skew coefficients. | Diagnose with leverage and Cook’s distance; consider robust regression (Huber loss, RANSAC). |
+| **Over‑fitting** (model too flexible for data size) | Great performance on training data but poor on new data. | Cross‑validation; regularization; prune trees; limit model complexity. |
+| **Ignoring categorical variables** | Treating them as numeric can create nonsense relationships. | Encode properly (one‑hot, effect coding, or use tree‑based models that handle categories natively). |
+| **Data leakage** (using future information in training) | Inflated performance estimates. | Keep a strict separation between training and validation/test data; avoid using target‑derived features. |
+
+---
+
+## 6. Quick Example (Python)
+
+Below is a minimal example using **scikit‑learn** to fit a linear regression model to the classic Boston housing dataset (note: the dataset is deprecated in newer scikit‑learn versions; you can replace it with any CSV you have).
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Load data
+boston = load_boston()
+X = pd.DataFrame(boston.data, columns=boston.feature_names)
+y = pd.Series(boston.target, name='MEDV')   # Median house value
+
+# Train‑test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42)
+
+# Fit linear regression
+lr = LinearRegression()
+lr.fit(X_train, y_train)
+
+# Predict & evaluate
+y_pred = lr.predict(X_test)
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+r2   = r2_score(y_test, y_pred)
+
+print(f'RMSE: {rmse:.2f}')
+print(f'R² : {r2:.3f}')
+
+# Coefficients (interpretation)
+coeff_df = pd.DataFrame({
+    'Feature': X.columns,
+    'Coefficient': lr.coef_
+})
+print(coeff_df.sort_values(by='Coefficient', key=abs, ascending=False))
+```
+
+*Output (approximate)*  
+
+```
+RMSE: 4.90
+R² : 0.73
+          Feature  Coefficient
+RM   LSTAT          -0.525
+RM   RM              3.804
+...
+```
+
+Interpretation: each unit increase in **LSTAT** (percentage of lower‑status population) is associated with a ~0.53‑unit decrease in median house price, holding other variables constant; each additional room (**RM**) adds about 3.8 units to the price.
+
+---
+
+## 7. Further Reading & Resources
+
+| Resource | What you’ll learn |
+|----------|-------------------|
+| **“An Introduction to Statistical Learning”** (ISLR) – Chapter 3 | Intuitive overview of linear regression, regularization, and model assessment. |
+| **“The Elements of Statistical Learning”** – Hastie, Tibshirani, Friedman | Deeper mathematical treatment, including GLMs and non‑parametric methods. |
+| **scikit‑learn documentation** – <https://scikit-learn.org> | Practical implementation details for many regression algorithms. |
+| **“Applied Regression Analysis and Generalized Linear Models”** – Fox | Comprehensive guide to diagnostics, transformations, and GLMs. |
+| **Kaggle micro‑courses** – “Intro to Machine Learning” | Hands‑on notebooks for regression, cross‑validation, and feature engineering. |
+
+---
+
+### TL;DR
+
+*Regression* is a set of techniques for predicting a **continuous** outcome from one or more inputs. The simplest form—**linear regression**—fits a straight line (or hyperplane) by minimizing squared errors. More sophisticated variants (regularized, non‑linear, tree‑based, neural‑network) handle high‑dimensional data, non‑linear patterns, and various outcome distributions. Proper use involves checking assumptions, guarding against over‑fitting, and validating performance on unseen data.",,,openai/gpt-oss-120b,5.8009,87,2682,0.0044,0.4846,5,"The answer correctly states that regression predicts continuous numerical values and provides comprehensive, accurate information. It fully covers the expected answer without any factual errors.",PASS,FAIL,FAIL
+11,SQL,What is SQL?,SQL is a language used to manage and query relational databases.,"**SQL (Structured Query Language)** is a standardized programming language used to manage and manipulate relational databases. It lets you:
+
+| What you can do with SQL | Typical commands (keywords) |
+|--------------------------|-----------------------------|
+| **Retrieve data**        | `SELECT`, `FROM`, `WHERE`, `JOIN`, `GROUP BY`, `ORDER BY` |
+| **Insert new data**      | `INSERT INTO` |
+| **Update existing data** | `UPDATE … SET … WHERE` |
+| **Delete data**          | `DELETE FROM … WHERE` |
+| **Create/modify database objects** | `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`, `CREATE INDEX`, `CREATE VIEW` |
+| **Control access**       | `GRANT`, `REVOKE` |
+| **Manage transactions** | `BEGIN`, `COMMIT`, `ROLLBACK` |
+
+### Key Concepts
+
+| Concept | Description |
+|---------|-------------|
+| **Relational database** | Stores data in tables (rows × columns) where relationships are expressed via keys. |
+| **Table** | A set of rows (records) with a fixed set of columns (attributes). |
+| **Row/Record** | One entry in a table, representing a single entity. |
+| **Column/Field** | A specific attribute of the entity (e.g., `name`, `price`). |
+| **Primary key** | A column (or set of columns) that uniquely identifies each row. |
+| **Foreign key** | A column that references a primary key in another table, establishing a relationship. |
+| **Query** | A request for information from the database, usually written with `SELECT`. |
+| **Transaction** | A group of operations that are executed as a single unit of work, ensuring **ACID** properties (Atomicity, Consistency, Isolation, Durability). |
+
+### Simple Example
+
+```sql
+-- Create a table for customers
+CREATE TABLE customers (
+    customer_id   INT PRIMARY KEY,
+    first_name    VARCHAR(50),
+    last_name     VARCHAR(50),
+    email         VARCHAR(100)
+);
+
+-- Insert a new customer
+INSERT INTO customers (customer_id, first_name, last_name, email)
+VALUES (1, 'Alice', 'Smith', 'alice@example.com');
+
+-- Retrieve all customers whose last name is 'Smith'
+SELECT customer_id, first_name, email
+FROM customers
+WHERE last_name = 'Smith'
+ORDER BY first_name;
+```
+
+### Why SQL Matters
+
+1. **Portability** – Most major database systems (MySQL, PostgreSQL, Oracle, SQL Server, SQLite, etc.) support the SQL standard, so skills transfer across platforms.
+2. **Declarative nature** – You describe *what* data you want, not *how* to fetch it; the database engine decides the optimal execution plan.
+3. **Powerful data manipulation** – Complex aggregations, joins across many tables, and sub‑queries let you answer sophisticated business questions.
+4. **Integration** – SQL is embedded in many programming languages (Python, Java, C#, PHP, etc.) via libraries/ORMs, making it a backbone of data‑driven applications.
+
+### Common Variations
+
+While the core language is standardized (SQL‑92, SQL:1999, SQL:2003, …), each vendor adds extensions:
+
+| Vendor | Notable extensions |
+|--------|--------------------|
+| **MySQL** | `LIMIT`, `INSERT … ON DUPLICATE KEY UPDATE` |
+| **PostgreSQL** | `RETURNING`, powerful window functions, `JSONB` operators |
+| **SQL Server** | `TOP`, `MERGE`, `ROW_NUMBER() OVER (…)` |
+| **Oracle** | `CONNECT BY` hierarchical queries, `MERGE`, `PL/SQL` procedural extensions |
+
+### Bottom Line
+
+SQL is the lingua franca for interacting with relational databases—allowing you to define structures, store data, retrieve information, and maintain data integrity efficiently and reliably.",,,openai/gpt-oss-120b,11.2213,87,869,0.0506,0.6217,5,"The answer accurately defines SQL as a language for managing and querying relational databases, includes relevant details, and fully covers the expected content.",PASS,FAIL,FAIL
+12,SQL,What does SELECT do in SQL?,SELECT retrieves data from a database.,"**SELECT** is the core statement in SQL (Structured Query Language) that retrieves data from one or more tables (or other queryable objects such as views, sub‑queries, or common table expressions).  
+
+### What it does
+- **Specifies the columns** (or expressions) you want to see in the result set.  
+- **Identifies the source(s)** of the data (tables, views, joins, etc.).  
+- **Filters rows**, orders them, groups them, and can compute aggregates—all through optional clauses that follow the basic `SELECT … FROM …` skeleton.
+
+### Basic Syntax
+
+```sql
+SELECT [DISTINCT] column1, column2, …      -- what to return
+FROM   table_name [AS t]                   -- where to get it
+[WHERE  condition]                         -- which rows
+[GROUP BY column1, column2, …]             -- aggregate grouping
+[HAVING condition]                         -- filter groups
+[ORDER BY column1 [ASC|DESC], …]           -- sort the result
+[LIMIT n] [OFFSET m];                      -- limit rows (dialect‑specific)
+```
+
+### Key Parts Explained
+
+| Clause | Purpose | Example |
+|--------|---------|---------|
+| **SELECT** | List of columns, expressions, or `*` for all columns. | `SELECT first_name, last_name` |
+| **DISTINCT** | Remove duplicate rows from the result. | `SELECT DISTINCT country` |
+| **FROM** | One or more tables (or joins, subqueries, CTEs). | `FROM employees e` |
+| **WHERE** | Row‑level filter using Boolean conditions. | `WHERE salary > 50000` |
+| **JOIN** (inner, left, right, full, cross) | Combine rows from multiple tables based on a relationship. | `FROM orders o JOIN customers c ON o.customer_id = c.id` |
+| **GROUP BY** | Group rows to apply aggregate functions (`COUNT`, `SUM`, `AVG`, etc.). | `GROUP BY department_id` |
+| **HAVING** | Filter groups after aggregation. | `HAVING COUNT(*) > 5` |
+| **ORDER BY** | Sort the final result set. | `ORDER BY hire_date DESC` |
+| **LIMIT / OFFSET** | Return only a subset of rows (useful for paging). | `LIMIT 10 OFFSET 20` |
+
+### Simple Example
+
+```sql
+SELECT first_name, last_name, salary
+FROM employees
+WHERE department = 'Sales'
+ORDER BY salary DESC;
+```
+
+- **SELECT** tells SQL to return the three columns listed.  
+- **FROM employees** says the data lives in the `employees` table.  
+- **WHERE department = 'Sales'** keeps only rows where the employee works in Sales.  
+- **ORDER BY salary DESC** sorts the output so the highest‑paid salespeople appear first.
+
+### More Advanced Uses
+
+1. **Aggregations**
+
+   ```sql
+   SELECT department, AVG(salary) AS avg_salary, COUNT(*) AS num_emp
+   FROM employees
+   GROUP BY department
+   HAVING AVG(salary) > 60000;
+   ```
+
+2. **Joins**
+
+   ```sql
+   SELECT o.order_id, c.customer_name, o.total_amount
+   FROM orders o
+   JOIN customers c ON o.customer_id = c.id
+   WHERE o.order_date >= '2024-01-01';
+   ```
+
+3. **Subqueries / CTEs**
+
+   ```sql
+   WITH top_sales AS (
+       SELECT salesperson_id, SUM(amount) AS total_sales
+       FROM sales
+       GROUP BY salesperson_id
+   )
+   SELECT s.name, ts.total_sales
+   FROM top_sales ts
+   JOIN salespeople s ON ts.salesperson_id = s.id
+   ORDER BY ts.total_sales DESC
+   LIMIT 5;
+   ```
+
+### Common Variations by Dialect
+
+| Feature | MySQL / PostgreSQL | SQL Server | Oracle |
+|---------|-------------------|------------|--------|
+| Limit rows | `LIMIT n` (or `LIMIT n OFFSET m`) | `TOP n` after `SELECT` or `OFFSET…FETCH` | `ROWNUM <= n` (old) or `FETCH FIRST n ROWS ONLY` |
+| String concatenation | `CONCAT(a,b)` or `a || b` | `a + b` | `a || b` |
+| Date literals | `'2024-01-01'` | `CAST('2024-01-01' AS DATE)` | `DATE '2024-01-01'` |
+
+### Take‑away
+
+- **`SELECT` is the entry point for reading data**; everything else (WHERE, JOIN, GROUP BY, etc.) refines *how* you read it.
+- Mastering the clauses that accompany `SELECT` lets you answer virtually any data‑retrieval question in a relational database.",,,openai/gpt-oss-120b,15.654,90,1072,0.0234,0.4334,5,"The answer accurately explains that SELECT retrieves data from a database and provides comprehensive details about its syntax and usage, fully covering the expected answer.",PASS,FAIL,FAIL
+13,SQL,What is a primary key?,A primary key uniquely identifies each row in a table.,"**Primary Key – Quick Definition**
+
+In a relational database, a **primary key** is a column (or a set of columns) whose values uniquely identify every row in a table. The database enforces two rules for a primary key:
+
+1. **Uniqueness** – No two rows can have the same primary‑key value.
+2. **Not‑null** – Every row must have a value for the primary‑key column(s); `NULL` is not allowed.
+
+Because of these rules, the primary key serves as the table’s “official” identifier.
+
+---
+
+### Why It Matters
+- **Row identification:** Applications and other database objects (e.g., indexes, foreign keys) use the primary key to locate a specific record quickly.
+- **Data integrity:** The uniqueness constraint prevents duplicate records.
+- **Relationships:** Other tables reference a primary key via **foreign keys**, establishing relational links (one‑to‑many, many‑to‑many, etc.).
+
+---
+
+### Typical Forms
+
+| Form | Description | Example |
+|------|-------------|---------|
+| **Single‑column (simple) key** | One column alone is enough to guarantee uniqueness. | `EmployeeID` in an `Employees` table. |
+| **Composite (compound) key** | Two or more columns together provide uniqueness. | `(OrderID, ProductID)` in an `OrderDetails` table, where each order can contain many products but the pair is unique. |
+| **Surrogate key** | An artificial identifier (often an auto‑increment integer) that has no business meaning. | `CustomerID` generated automatically, even though a customer might also be uniquely identified by `Email`. |
+| **Natural key** | A column that already exists in the data and naturally uniquely identifies a row. | `ISBN` for a `Books` table. |
+
+---
+
+### How It’s Declared (SQL examples)
+
+```sql
+-- Simple primary key
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName  VARCHAR(50)
+);
+
+-- Composite primary key
+CREATE TABLE OrderDetails (
+    OrderID   INT,
+    ProductID INT,
+    Quantity  INT,
+    PRIMARY KEY (OrderID, ProductID)
+);
+
+-- Using an auto‑increment surrogate key (MySQL syntax)
+CREATE TABLE Customers (
+    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+    Email      VARCHAR(255) NOT NULL,
+    Name       VARCHAR(100)
+);
+```
+
+---
+
+### Related Concepts
+
+| Concept | How It Differs from Primary Key |
+|---------|---------------------------------|
+| **Candidate key** | Any column or set of columns that could serve as a primary key (i.e., unique & not‑null). One candidate key is chosen as the primary key; the others become *alternate keys*. |
+| **Unique key (constraint)** | Enforces uniqueness like a primary key but **allows NULLs** (and you can have multiple unique constraints per table). |
+| **Foreign key** | A column (or columns) in one table that references the primary key of another table, creating a relational link. |
+| **Index** | A data structure that speeds up lookups. Primary keys automatically get a unique index, but you can create additional indexes on other columns. |
+
+---
+
+### Best Practices
+
+1. **Keep it stable:** Choose a primary key that rarely, if ever, changes. Changing a primary key cascades to all related foreign keys.
+2. **Prefer simple, narrow keys:** Small integer or GUID columns are efficient for indexing and joins.
+3. **Avoid business‑meaningful natural keys when they can change** (e.g., Social Security Number, email address) unless you’re certain they’ll stay constant.
+4. **Define it at table creation** (or add it early) to let the DBMS enforce integrity from the start.
+5. **Document alternate candidate keys** if they exist; they may be useful for queries or future schema changes.
+
+---
+
+### TL;DR
+
+A **primary key** is a mandatory, unique identifier for each row in a database table. It guarantees that every record can be distinguished from all others, cannot be `NULL`, and is the anchor point for relationships with other tables. It can be a single column, a combination of columns, or an artificial surrogate value, and it is enforced by the database engine through a primary‑key constraint.",,,openai/gpt-oss-120b,2.1914,89,975,0.034,0.6849,5,"The answer correctly states that a primary key uniquely identifies each row in a table, and it provides additional accurate details about uniqueness, not-null, and related concepts. It is fully correct and relevant.",PASS,FAIL,PASS
+14,SQL,What is the purpose of WHERE?,WHERE filters records based on specified conditions.,"**Short answer:**  
+In SQL (and in many other query‑oriented languages), the **`WHERE`** clause is used to **filter data** – it tells the database engine to return, modify, or delete only those rows that satisfy a given condition (or set of conditions).
+
+---
+
+## 1. What `WHERE` does in SQL
+
+| Statement | Role of `WHERE` |
+|-----------|-----------------|
+| `SELECT … FROM table WHERE condition` | Returns **only** the rows that meet the condition. |
+| `UPDATE table SET col = value WHERE condition` | Updates **only** the rows that meet the condition. |
+| `DELETE FROM table WHERE condition` | Deletes **only** the rows that meet the condition. |
+| `MERGE … WHEN MATCHED THEN …` (or `INSERT … SELECT … WHERE …`) | Often uses a `WHERE` to decide which rows are matched or inserted. |
+
+### Key points
+
+| Aspect | Detail |
+|--------|--------|
+| **Predicate** | The `WHERE` clause contains a *predicate*—an expression that evaluates to `TRUE`, `FALSE`, or `UNKNOWN` (NULL). Only rows where the predicate is `TRUE` are kept. |
+| **Multiple conditions** | You can combine several predicates with logical operators `AND`, `OR`, and `NOT`. |
+| **Comparison operators** | `=`, `<>`, `!=`, `<`, `>`, `<=`, `>=`, `BETWEEN`, `LIKE`, `IN`, `IS NULL`, etc. |
+| **Functions & expressions** | You can call functions (`UPPER(name) = 'JOHN'`), perform arithmetic (`price * quantity > 1000`), or use sub‑queries (`WHERE id IN (SELECT …)`). |
+| **Performance** | The database can use indexes, statistics, and query‑plan optimizations to evaluate the `WHERE` clause efficiently. A well‑written predicate can dramatically reduce I/O and CPU usage. |
+| **Order of evaluation** | In a `SELECT` statement, `WHERE` is evaluated **before** `GROUP BY`, `HAVING`, `ORDER BY`, and `LIMIT/OFFSET`. (If you need to filter after aggregation, use `HAVING`.) |
+
+---
+
+## 2. Simple examples
+
+### 2.1 Basic filtering
+
+```sql
+SELECT *
+FROM Employees
+WHERE Department = 'Sales';
+```
+*Returns only employees whose `Department` column equals `'Sales'`.*
+
+### 2.2 Multiple conditions
+
+```sql
+SELECT FirstName, LastName, Salary
+FROM Employees
+WHERE Department = 'Engineering'      -- must be in Engineering
+  AND Salary > 90000                  -- and earn more than 90k
+  AND HireDate >= '2022-01-01';       -- and were hired this year or later
+```
+
+### 2.3 Using `IN` and `BETWEEN`
+
+```sql
+SELECT *
+FROM Orders
+WHERE Status IN ('Shipped', 'Delivered')
+  AND OrderDate BETWEEN '2024-01-01' AND '2024-03-31';
+```
+
+### 2.4 Sub‑query predicate
+
+```sql
+SELECT *
+FROM Products p
+WHERE p.CategoryID IN (
+    SELECT c.CategoryID
+    FROM Categories c
+    WHERE c.IsActive = 1
+);
+```
+
+### 2.5 Updating only certain rows
+
+```sql
+UPDATE Products
+SET Discontinued = 1
+WHERE UnitsInStock = 0;
+```
+
+### 2.6 Deleting only old logs
+
+```sql
+DELETE FROM AuditLog
+WHERE LogDate < DATEADD(year, -2, GETDATE());
+```
+
+---
+
+## 3. `WHERE` vs. Similar Clauses
+
+| Clause | When to use | Typical purpose |
+|--------|-------------|-----------------|
+| `WHERE` | Before any grouping/aggregation | Row‑level filtering |
+| `HAVING` | After `GROUP BY` | Filter **aggregated** results (`SUM`, `COUNT`, etc.) |
+| `ON` (in `JOIN`) | When joining tables | Define how rows from two tables match |
+| `QUALIFY` (Snowflake, BigQuery) | After window functions | Filter on results of window calculations |
+| `FILTER` (PostgreSQL aggregate syntax) | Inside an aggregate function | Apply a condition to a single aggregate |
+
+---
+
+## 4. Common pitfalls & best practices
+
+| Pitfall | Why it matters | How to avoid / fix |
+|---------|----------------|--------------------|
+| **Using `=` with NULL** | `NULL = NULL` evaluates to `UNKNOWN`, so rows are filtered out unintentionally. | Use `IS NULL` or `IS NOT NULL`. |
+| **Implicit type conversion** | Comparing a string to a numeric column can cause full table scans. | Cast explicitly or store data in the proper type. |
+| **Missing indexes on filter columns** | Leads to full scans and poor performance. | Add appropriate indexes (single‑column, composite, or covering indexes). |
+| **Over‑using functions on indexed columns** | `WHERE LOWER(name) = 'john'` prevents index use. | Use functional indexes (e.g., `CREATE INDEX idx_lower_name ON Employees (LOWER(name));`) or store normalized data. |
+| **Neglecting `WHERE` in `UPDATE`/`DELETE`** | Accidentally modifies or removes *all* rows. | Always double‑check the predicate; consider a `SELECT` first. |
+| **Complex predicates that can be reordered** | The optimizer may not pick the best order. | Write predicates in a logical order, but rely on the optimizer; if needed, use query hints or rewrite. |
+
+---
+
+## 5. `WHERE` in other contexts (quick overview)
+
+| Language / Tool | `WHERE` usage |
+|-----------------|---------------|
+| **LINQ (C# / VB.NET)** | `.Where(x => x.Age > 30)` – filters an `IEnumerable` or `IQueryable`. |
+| **Pandas (Python)** | `df[df['age'] > 30]` – the bracket expression works like a `WHERE`. |
+| **MongoDB** | `{ age: { $gt: 30 } }` – the query document is the equivalent of a `WHERE`. |
+| **Shell (bash) `find`** | `find . -type f -name ""*.txt""` – the `-name` test acts as a filter. |
+| **Excel / Power Query** | `Table.SelectRows(table, each [Age] > 30)` – a `WHERE`‑style filter. |
+
+In all these cases the core idea is the same: **select only the items that satisfy a condition**.
+
+---
+
+## 6. TL;DR (one‑sentence summary)
+
+The `WHERE` clause is the SQL (and many query languages’) way to **restrict a statement to rows that meet a specified condition**, enabling you to retrieve, update, or delete precisely the data you need.",,,openai/gpt-oss-120b,3.4289,90,1564,0.0132,0.5573,5,"The answer accurately explains that WHERE filters records based on specified conditions, covering all aspects of its purpose and usage, and is fully correct and relevant.",PASS,FAIL,FAIL
+15,Mathematics,What is 15 multiplied by 8?,120,15 × 8 = 120.,,,openai/gpt-oss-120b,7.4942,92,39,0.5,0.5358,5,"The answer correctly states that 15 multiplied by 8 equals 120, matching the expected answer and providing the correct calculation.",PASS,PASS,FAIL
+16,Mathematics,What is the square root of 144?,12,"The principal (non‑negative) square root of 144 is **12**. (Both 12 and –12 square to 144, but the standard square‑root function returns the positive value.)",,,openai/gpt-oss-120b,0.4712,92,96,0.0714,0.3127,5,"The answer correctly states that the square root of 144 is 12, acknowledges the negative root, and explains that the standard square‑root function returns the positive value. It fully satisfies the expected answer and is factually correct and relevant.",PASS,FAIL,FAIL
+17,Mathematics,What is 25 percent of 200?,50,"25 % of 200 is:
+
+\(0.25 \times 200 = 50\)
+
+So the answer is **50**.",,,openai/gpt-oss-120b,0.3592,92,69,0.1333,0.4463,5,"The answer correctly calculates 25% of 200 as 50, matches the expected answer, and is fully relevant.",PASS,FAIL,FAIL
+18,Reasoning,"If all roses are flowers, are all roses plants?","Yes, roses are plants.","**Short answer:** Yes—if we accept the ordinary biological fact that *every* flower is part of a plant, then “all roses are plants” follows.  
+
+**Why the answer depends on an extra premise**
+
+1. **What we’re given**  
+   - Premise 1: *All roses are flowers.* (Formally: ∀x (Rose(x) → Flower(x)))
+
+2. **What we want to prove**  
+   - Conclusion: *All roses are plants.* (Formally: ∀x (Rose(x) → Plant(x)))
+
+3. **Logical structure**  
+   To derive the conclusion from the premise we need a second link:
+   - Premise 2 (unstated but generally true): *All flowers are plants.* (∀x (Flower(x) → Plant(x)))
+
+   With both premises we can chain the implications:
+   \[
+   Rose(x) \rightarrow Flower(x) \rightarrow Plant(x)
+   \]
+   Hence, Rose(x) → Plant(x) for any x, which is exactly “all roses are plants.”
+
+4. **If we only have Premise 1**  
+   Without knowing anything about the relationship between *flowers* and *plants*, the statement “all roses are plants” is **not logically guaranteed**. In pure formal logic, the set of “flowers” could be a completely unrelated category; the premise alone tells us nothing about plants.
+
+5. **Real‑world knowledge**  
+   In biology, a *flower* is the reproductive structure of a *plant*. Therefore the extra premise (“all flowers are plants”) is a factual truth, and the conclusion holds in the real world.
+
+---
+
+### TL;DR
+
+- **Logically:** “All roses are plants” follows *only if* we also accept that “all flowers are plants.”
+- **In everyday biology:** Since every flower belongs to a plant, the statement is true—so yes, all roses are plants.",,,openai/gpt-oss-120b,1.4277,94,541,0.0316,0.6257,5,"The answer correctly states that all roses are plants, provides a logical justification, and aligns with the expected answer. It is factually correct, relevant, and fully covers the expected response.",PASS,FAIL,FAIL
+19,Reasoning,A train travels 60 km in one hour. How far does it travel in 3 hours?,180 km,"The train’s speed is  
+
+\[
+\text{speed} = \frac{60\ \text{km}}{1\ \text{hour}} = 60\ \text{km/h}.
+\]
+
+If it keeps that constant speed for 3 hours, the distance covered is
+
+\[
+\text{distance} = \text{speed} \times \text{time} = 60\ \text{km/h} \times 3\ \text{h} = 180\ \text{km}.
+\]
+
+**Answer:** The train travels **180 km** in 3 hours.",,,openai/gpt-oss-120b,0.5813,103,170,0.0667,0.3498,5,"The answer correctly calculates the train’s speed as 60 km/h and then multiplies by 3 hours to obtain 180 km, matching the expected answer.",PASS,FAIL,FAIL
+20,LLM Concepts,What is an LLM?,A Large Language Model is an AI model trained on large amounts of text to understand and generate language.,"**LLM = Large Language Model**
+
+In the context of artificial intelligence, an **LLM** (Large Language Model) is a type of neural‑network model that has been trained on massive amounts of text data to understand, generate, and manipulate human language.  
+
+---
+
+### Core Characteristics
+
+| Feature | What It Means |
+|---------|---------------|
+| **Scale** | “Large” refers to both the size of the training corpus (often billions of words) and the number of model parameters (ranging from millions to hundreds of billions). |
+| **Architecture** | Most modern LLMs use the **Transformer** architecture (introduced in *Vaswani et al., 2017*). This design relies on self‑attention mechanisms that let the model weigh the relevance of every word in a sequence to every other word. |
+| **Training Objective** | Typically **self‑supervised**: the model predicts missing or next tokens (words/sub‑words) given surrounding context. Common objectives include masked language modeling (e.g., BERT) and causal language modeling (e.g., GPT). |
+| **Data** | A diverse mix of books, articles, web pages, code repositories, dialogues, etc. The data is usually cleaned, tokenized, and sometimes filtered for quality or safety. |
+| **Generalization** | Because they see so much varied language, LLMs can perform many tasks **zero‑shot** (no task‑specific fine‑tuning) or **few‑shot** (a handful of examples) by simply prompting them in natural language. |
+
+---
+
+### How an LLM Works (Simplified)
+
+1. **Tokenization** – Text is broken into sub‑word units (e.g., “un‑believ‑able” → tokens).  
+2. **Embedding** – Each token is mapped to a high‑dimensional vector that captures its meaning.  
+3. **Transformer Layers** – Stacked blocks of self‑attention and feed‑forward networks iteratively refine these vectors, allowing the model to capture long‑range dependencies.  
+4. **Output Projection** – The final vectors are turned back into probabilities over the vocabulary, from which the next token (or a classification label, etc.) is sampled or selected.  
+
+---
+
+### Typical Capabilities
+
+- **Text generation** (stories, code, emails)  
+- **Question answering** (factoid, reasoning, conversational)  
+- **Summarization** (shortening long documents)  
+- **Translation** (between languages)  
+- **Sentiment analysis / classification**  
+- **Code completion & debugging**  
+- **Reasoning & problem solving** (math, logic puzzles)  
+
+---
+
+### Prominent Examples
+
+| Model | Parameters | Release Year | Notable Traits |
+|-------|------------|--------------|----------------|
+| **GPT‑3** | 175 B | 2020 | First widely known LLM with strong few‑shot abilities. |
+| **GPT‑4** | ≈500 B (estimated) | 2023 | Multimodal (text + image), higher reliability, better reasoning. |
+| **Claude** (Anthropic) | 52 B – 100 B | 2023‑24 | Trained with “constitutional AI” to improve safety. |
+| **LLaMA** (Meta) | 7 B – 70 B | 2023 | Open‑source weights, designed for research accessibility. |
+| **Gemini** (Google DeepMind) | 1 T+ (rumored) | 2024 | Integrated with Google’s search and multimodal data. |
+| **Mistral** | 7 B – 13 B | 2023‑24 | Focus on efficiency; strong performance per parameter. |
+
+---
+
+### Why “Large” Matters
+
+- **Capacity**: More parameters let the model store richer patterns and facts.  
+- **Data Diversity**: Training on varied sources improves robustness across domains.  
+- **Emergent Behaviors**: Certain abilities (e.g., chain‑of‑thought reasoning) appear only after a threshold size is crossed.
+
+However, larger models also bring challenges:
+
+- **Compute & Energy**: Training can require thousands of GPU/TPU years and megawatt‑hours of electricity.  
+- **Bias & Hallucination**: They inherit biases from the data and can generate plausible‑but‑false statements.  
+- **Safety & Governance**: Controlling misuse (e.g., disinformation, automated phishing) is an active research area.
+
+---
+
+### Non‑AI Meaning (Brief)
+
+Outside of AI, **LLM** also stands for **Master of Laws**, a postgraduate academic degree in legal studies. In most tech discussions, though, the abbreviation refers to *large language models*.
+
+---
+
+### TL;DR
+
+An LLM is a massive neural‑network model—usually a Transformer—trained on huge text corpora to predict language. Its size and training data give it the ability to understand and generate human‑like text across a wide range of tasks, from answering questions to writing code, but it also raises computational, ethical, and safety considerations.",,,openai/gpt-oss-120b,2.6121,89,1138,0.0615,0.6815,5,"The answer correctly defines an LLM as a large AI model trained on extensive text to understand and generate language, and it provides comprehensive, accurate details that fully cover the expected answer.",PASS,FAIL,PASS
