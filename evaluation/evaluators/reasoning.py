@@ -91,8 +91,8 @@ Return only valid JSON:
         return {
             "reasoning_score": score,
             "reasoning_verdict": (
-                "STRONG" if score >= 4
-                else "ACCEPTABLE" if score == 3
+                "STRONG" if score == 5
+                else "ACCEPTABLE" if score in (3, 4)
                 else "WEAK"
             ),
             "reasoning_strengths": strengths,

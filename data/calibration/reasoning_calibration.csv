@@ -1,0 +1,7 @@
+id,category,question,expected_answer,actual_answer,expected_class
+1,Python,What does a Python function return?,"A function returns a value using the return statement. If no return statement is used, it returns None.","A function returns a value using return. If no value is returned explicitly, Python returns None.",CORRECT
+2,Python,What is the output of 10 - 4 in Python?,The output is 6.,The output is 14 because subtraction adds the two numbers.,INCORRECT
+3,Machine Learning,What is overfitting?,"Overfitting occurs when a model learns training data too closely, including noise, and performs poorly on unseen data.","Overfitting happens when a model memorizes patterns and noise in training data, resulting in poor generalization to new data.",CORRECT
+4,Machine Learning,What is the purpose of a test dataset?,A test dataset evaluates how well a trained model generalizes to unseen data.,A test dataset is used to repeatedly train the model and update its weights until training accuracy reaches 100%.,INCORRECT
+5,Machine Learning,What is regression in machine learning?,Regression predicts continuous numerical values using input features.,Regression is a supervised learning technique used to predict outcomes from input features.,PARTIAL
+6,Python,What is the difference between a list and a tuple in Python?,"Lists are mutable, while tuples are immutable.",Lists and tuples both store multiple elements. They are used to organize collections of data.,PARTIAL

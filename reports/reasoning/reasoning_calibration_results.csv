@@ -1,0 +1,7 @@
+id,category,expected_class,reasoning_score,reasoning_verdict,reasoning_explanation
+1,Python,CORRECT,5,STRONG,"The answer is logically consistent, correct, relevant, and fully supports its conclusion without contradictions."
+2,Python,INCORRECT,1,WEAK,"The answer states the output is 14 and claims subtraction adds the numbers, which is factually wrong and logically inconsistent with the question. The explanation does not support the conclusion and contains clear reasoning errors."
+3,Machine Learning,CORRECT,5,STRONG,"The answer correctly identifies overfitting as memorizing training data and noise, leading to poor generalization, which aligns with the reference and is logically consistent."
+4,Machine Learning,INCORRECT,1,WEAK,"The answer is fundamentally flawed, providing incorrect information about the purpose of a test dataset."
+5,Machine Learning,PARTIAL,4,ACCEPTABLE,"The answer is logically consistent, correct, and relevant, but omits the detail that regression outputs continuous values, which is a minor omission."
+6,Python,PARTIAL,1,WEAK,"The answer is logically consistent but lacks the essential detail about mutability, making it fundamentally flawed for the given question."
