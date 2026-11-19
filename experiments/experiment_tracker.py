@@ -60,7 +60,12 @@ def register_experiment(
         "factuality_supported",
         "factuality_partially_supported",
         "factuality_unsupported",
-        "factuality_errors"
+        "factuality_errors",
+        "avg_reasoning_score",
+        "reasoning_strong",
+        "reasoning_acceptable",
+        "reasoning_weak",
+        "reasoning_errors"
     ]
 
     missing = [
@@ -115,7 +120,12 @@ def register_experiment(
                 row["factuality_partially_supported"]
             ),
             "factuality_unsupported": int(row["factuality_unsupported"]),
-            "factuality_errors": int(row["factuality_errors"])
+            "factuality_errors": int(row["factuality_errors"]),
+            "avg_reasoning_score": float(row["avg_reasoning_score"]),
+            "reasoning_strong": int(row["reasoning_strong"]),
+            "reasoning_acceptable": int(row["reasoning_acceptable"]),
+            "reasoning_weak": int(row["reasoning_weak"]),
+            "reasoning_errors": int(row["reasoning_errors"])
         }
 
     config = {
