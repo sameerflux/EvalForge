@@ -1,0 +1,10 @@
+id,category,question,expected_answer,actual_response,score,passed,model_name,latency_seconds,prompt_tokens,completion_tokens,token_f1_score,semantic_similarity_score,judge_score,judge_reason,judge_verdict
+1,Python,What is Python?,"Python is a high-level, interpreted programming language.","Python is a high‑level, general‑purpose programming language that emphasizes readability and simplicity. It was created by Guido van Rossum and first released in 1991. Key features include:
+
+- **Interpreted** – code runs line‑by‑line, which speeds up development and debugging.
+- **Dynamic typing** – you don’t need to declare variable types explicitly.
+- **Extensive standard library** – ready‑made modules for everything from file I/O to networking.
+- **Cross‑platform** – runs on Windows, macOS, Linux, and many other systems.
+- **Versatile** – used for web development, data science, machine learning, automation, scripting, scientific computing, and more.
+
+Python’s syntax is designed to be clear and concise, making it a popular choice for beginners and professionals alike.",,,openai/gpt-oss-20b,0.5571,87.0,218.0,0.13333333333333333,0.8106,5,"The answer correctly identifies Python as a high‑level, interpreted programming language, adds accurate additional details (general‑purpose, readability, creator, release date, features), and fully addresses the question without any misinformation.",PASS

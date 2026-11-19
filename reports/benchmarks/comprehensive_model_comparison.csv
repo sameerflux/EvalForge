@@ -1,0 +1,3 @@
+model_name,total_questions,judge_pass,judge_fail,judge_errors,avg_token_f1,avg_semantic_similarity,avg_judge_score,avg_latency_seconds,avg_prompt_tokens,avg_completion_tokens,avg_factuality_score,factuality_supported,factuality_partially_supported,factuality_unsupported,factuality_errors
+GPT-OSS-20B,20,20,0,0,0.0868008670991064,0.5792900000000001,5.0,2.22586,90.5,840.0,4.9,19,1,0,0
+GPT-OSS-120B,20,20,0,0,0.0652436329341371,0.5661700000000001,5.0,3.5840900000000007,90.5,901.55,5.0,20,0,0,0

@@ -1,0 +1,30 @@
+{
+    "experiment_id": "EXP-003",
+    "experiment_name": "GPT-OSS Batch Benchmark Comparison",
+    "models": [
+        "openai/gpt-oss-20b",
+        "openai/gpt-oss-120b"
+    ],
+    "provider": "Groq",
+    "dataset": "data/raw/evaluation_dataset.csv",
+    "dataset_size": 20,
+    "temperature": 0,
+    "judge_model": "openai/gpt-oss-20b",
+    "response_files": {
+        "openai/gpt-oss-20b": "data/processed/gpt_oss_20b_benchmark_responses.csv",
+        "openai/gpt-oss-120b": "data/processed/gpt_oss_120b_responses.csv"
+    },
+    "evaluation_files": {
+        "openai/gpt-oss-20b": "reports/batch/gpt_oss_20b_complete.csv",
+        "openai/gpt-oss-120b": "reports/batch/gpt_oss_120b_complete.csv"
+    },
+    "metrics": [
+        "token_f1_score",
+        "semantic_similarity_score",
+        "llm_judge",
+        "latency_seconds",
+        "prompt_tokens",
+        "completion_tokens"
+    ],
+    "comparison_report": "reports/benchmarks/batch_model_comparison.csv"
+}

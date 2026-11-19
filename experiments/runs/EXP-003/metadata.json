@@ -1,0 +1,56 @@
+{
+    "experiment_id": "EXP-003",
+    "run_id": "5325953d-b5c6-45a9-b936-4fc5803b7c1f",
+    "experiment_name": "GPT-OSS Batch Benchmark Comparison",
+    "created_at": "2026-11-19T13:15:54.391249+00:00",
+    "status": "completed",
+    "provider": "Groq",
+    "models_evaluated": [
+        "openai/gpt-oss-20b",
+        "openai/gpt-oss-120b"
+    ],
+    "dataset_size": 20,
+    "evaluation_metrics": [
+        "token_f1_score",
+        "semantic_similarity_score",
+        "llm_judge",
+        "latency_seconds",
+        "prompt_tokens",
+        "completion_tokens"
+    ],
+    "model_results": {
+        "GPT-OSS-20B": {
+            "total_questions": 20,
+            "judge_pass": 20,
+            "judge_fail": 0,
+            "judge_errors": 0,
+            "avg_token_f1": 0.0868008670991064,
+            "avg_semantic_similarity": 0.5792900000000001,
+            "avg_judge_score": 5.0,
+            "avg_latency_seconds": 2.22586,
+            "avg_prompt_tokens": 90.5,
+            "avg_completion_tokens": 840.0
+        },
+        "GPT-OSS-120B": {
+            "total_questions": 20,
+            "judge_pass": 20,
+            "judge_fail": 0,
+            "judge_errors": 0,
+            "avg_token_f1": 0.0652436329341371,
+            "avg_semantic_similarity": 0.5661700000000001,
+            "avg_judge_score": 5.0,
+            "avg_latency_seconds": 3.5840900000000007,
+            "avg_prompt_tokens": 90.5,
+            "avg_completion_tokens": 901.55
+        }
+    },
+    "reports": {
+        "comparison_report": "reports/benchmarks/batch_model_comparison.csv",
+        "experiment_comparison_copy": "model_comparison.csv",
+        "evaluation_files": {
+            "openai/gpt-oss-20b": "reports/batch/gpt_oss_20b_complete.csv",
+            "openai/gpt-oss-120b": "reports/batch/gpt_oss_120b_complete.csv"
+        }
+    },
+    "notes": "20-question benchmark. GPT-OSS-20B and GPT-OSS-120B both achieved 20 PASS results. Findings are preliminary and require a larger, calibrated evaluation dataset."
+}

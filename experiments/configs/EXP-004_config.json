@@ -1,0 +1,32 @@
+{
+    "experiment_id": "EXP-004",
+    "experiment_name": "Comprehensive Multi-Model Benchmark",
+    "models": [
+        "openai/gpt-oss-20b",
+        "openai/gpt-oss-120b"
+    ],
+    "provider": "Groq",
+    "dataset": "data/raw/evaluation_dataset.csv",
+    "dataset_size": 20,
+    "temperature": 0,
+    "judge_model": "openai/gpt-oss-20b",
+    "response_files": {
+        "GPT-OSS-20B": "data/processed/gpt_oss_20b_benchmark_responses.csv",
+        "GPT-OSS-120B": "data/processed/gpt_oss_120b_responses.csv"
+    },
+    "evaluation_files": {
+        "GPT-OSS-20B-Batch": "reports/batch/gpt_oss_20b_complete.csv",
+        "GPT-OSS-120B-Batch": "reports/batch/gpt_oss_120b_complete.csv",
+        "GPT-OSS-20B-Factuality": "reports/factuality/gpt_oss_20b_factuality_complete.csv",
+        "GPT-OSS-120B-Factuality": "reports/factuality/gpt_oss_120b_factuality_complete.csv"
+    },
+    "metrics": [
+        "token_f1",
+        "semantic_similarity",
+        "llm_judge",
+        "factuality",
+        "latency",
+        "token_usage"
+    ],
+    "comparison_report": "reports/benchmarks/comprehensive_model_comparison.csv"
+}

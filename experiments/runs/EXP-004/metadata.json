@@ -1,0 +1,67 @@
+{
+    "experiment_id": "EXP-004",
+    "run_id": "dcb70600-f200-407f-95d2-290e34351439",
+    "experiment_name": "Comprehensive Multi-Model Benchmark",
+    "created_at": "2026-11-19T14:24:44.572093+00:00",
+    "status": "completed",
+    "provider": "Groq",
+    "models_evaluated": [
+        "openai/gpt-oss-20b",
+        "openai/gpt-oss-120b"
+    ],
+    "dataset_size": 20,
+    "evaluation_metrics": [
+        "token_f1",
+        "semantic_similarity",
+        "llm_judge",
+        "factuality",
+        "latency",
+        "token_usage"
+    ],
+    "model_results": {
+        "GPT-OSS-20B": {
+            "total_questions": 20,
+            "judge_pass": 20,
+            "judge_fail": 0,
+            "judge_errors": 0,
+            "avg_token_f1": 0.0868008670991064,
+            "avg_semantic_similarity": 0.5792900000000001,
+            "avg_judge_score": 5.0,
+            "avg_latency_seconds": 2.22586,
+            "avg_prompt_tokens": 90.5,
+            "avg_completion_tokens": 840.0,
+            "avg_factuality_score": 4.9,
+            "factuality_supported": 19,
+            "factuality_partially_supported": 1,
+            "factuality_unsupported": 0,
+            "factuality_errors": 0
+        },
+        "GPT-OSS-120B": {
+            "total_questions": 20,
+            "judge_pass": 20,
+            "judge_fail": 0,
+            "judge_errors": 0,
+            "avg_token_f1": 0.0652436329341371,
+            "avg_semantic_similarity": 0.5661700000000001,
+            "avg_judge_score": 5.0,
+            "avg_latency_seconds": 3.5840900000000007,
+            "avg_prompt_tokens": 90.5,
+            "avg_completion_tokens": 901.55,
+            "avg_factuality_score": 5.0,
+            "factuality_supported": 20,
+            "factuality_partially_supported": 0,
+            "factuality_unsupported": 0,
+            "factuality_errors": 0
+        }
+    },
+    "reports": {
+        "comparison_report": "reports/benchmarks/comprehensive_model_comparison.csv",
+        "experiment_comparison_copy": "model_comparison.csv",
+        "evaluation_files": {
+            "GPT-OSS-20B-Batch": "reports/batch/gpt_oss_20b_complete.csv",
+            "GPT-OSS-120B-Batch": "reports/batch/gpt_oss_120b_complete.csv",
+            "GPT-OSS-20B-Factuality": "reports/factuality/gpt_oss_20b_factuality_complete.csv",
+            "GPT-OSS-120B-Factuality": "reports/factuality/gpt_oss_120b_factuality_complete.csv"
+        }
+    }
+}
