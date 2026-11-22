@@ -13,7 +13,7 @@ def evaluate_reasoning(
     prompt = f"""
 You are an expert AI evaluation judge.
 
-Evaluate the observable reasoning quality of this answer.
+Evaluate the observable reasoning quality and correctness of the model answer.
 
 QUESTION:
 {question}
@@ -24,25 +24,30 @@ REFERENCE ANSWER:
 MODEL ANSWER:
 {actual_answer}
 
-Evaluate:
-1. Logical consistency.
-2. Correctness of the approach.
-3. Relevance to the question.
-4. Whether the explanation supports its conclusion.
-5. Contradictions or reasoning errors.
+Evaluation criteria:
+1. Does the answer correctly address the question?
+2. Are its main statements factually correct?
+3. Is the explanation logically consistent?
+4. Does the explanation support its conclusion?
+5. Are there important omissions, contradictions, or reasoning errors?
 
-Rules:
-- Evaluate only the explanation visible in the answer.
-- Do not request or infer hidden chain-of-thought.
+Scoring rules:
+- Compare the meaning of the model answer with the reference answer, not just the wording.
+- Accept alternative explanations and valid approaches when they correctly answer the question.
+- Do not require every detail from the reference answer if the model answer is still correct.
+- Distinguish missing information from incorrect information.
+- A correct central idea with an important missing detail should generally receive partial credit, not the lowest score.
+- Do not treat uncertainty alone as proof that the entire answer is incorrect. Evaluate the correctness of the information actually provided.
+- Do not reward an answer that merely repeats related terminology without answering the question.
+- Evaluate only the explanation visible in the answer. Do not request or infer hidden chain-of-thought.
 - Do not penalize concise but correct answers.
-- Allow alternative valid approaches.
 
 Score:
-5 = Excellent reasoning.
-4 = Good reasoning with minor omissions.
-3 = Acceptable reasoning with noticeable gaps.
-2 = Weak reasoning with significant gaps.
-1 = Fundamentally flawed or contradictory reasoning.
+5 = Correct answer with sound, relevant reasoning and no significant gaps.
+4 = Correct answer with only minor omissions or weaknesses.
+3 = Partially correct answer with a correct central idea but an important omission or gap.
+2 = Mostly incorrect answer with limited correct information.
+1 = Fundamentally incorrect, irrelevant, or logically contradictory answer.
 
 Return only valid JSON:
 {{
