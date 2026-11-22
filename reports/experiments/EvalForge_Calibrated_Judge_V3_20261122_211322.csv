@@ -1,0 +1,4 @@
+question,token_f1_score,semantic_similarity_score,judge_score,judge_reason,verdict
+What is Python?,0.7368421052631579,0.2,4,"The answer correctly identifies Python as a high-level programming language and mentions its readability, which is a notable feature. However, it omits the detail that Python is interpreted, which is a minor but relevant omission compared to the expected answer. Thus the answer is largely correct but slightly incomplete.",PASS
+What is the capital of France?,1.0,0.95,5,"The answer correctly identifies Paris as the capital of France, matching the expected answer and providing complete, factual information.",PASS
+What is 2 + 2?,0.0,0.2,1,"The answer 14 is factually incorrect for the arithmetic question 2 + 2, which equals 4.",FAIL

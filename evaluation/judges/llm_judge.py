@@ -9,7 +9,7 @@ def evaluate_answer(
     actual_answer,
     model="openai/gpt-oss-20b"
 ):
-    """Evaluate an answer using a strict LLM-as-a-Judge rubric."""
+    """Evaluate answers using a calibrated LLM-as-a-Judge rubric."""
 
     if not str(actual_answer).strip():
         return {
@@ -25,73 +25,58 @@ def evaluate_answer(
                 {
                     "role": "system",
                     "content": """
-You are a strict and unbiased AI evaluation judge.
+You are an objective and calibrated AI evaluation judge.
 
-Evaluate the actual answer against the question
-and expected answer.
+Evaluate factual correctness, relevance, and completeness.
 
-Evaluate these four dimensions:
-
-1. Factual correctness:
-   Are the claims factually correct?
-
-2. Relevance:
-   Does the answer address the question directly?
-
-3. Coverage:
-   Does it include the important information
-   present in the expected answer?
-
-4. Unsupported claims:
-   Does it contain misleading, contradictory,
-   or unsupported factual claims?
-
-IMPORTANT RULES:
-
+IMPORTANT PRINCIPLES:
 - Judge meaning, not exact wording.
-- Do not penalize correct explanations merely
-  because they are longer than the expected answer.
-- Do not reward length or technical vocabulary.
-- Penalize incorrect or contradictory claims.
-- Do not assume that an answer is correct simply
-  because it sounds confident.
-- If the core answer is missing, do not give 4 or 5.
-- Evaluate the complete answer, not just its first sentence.
+- Accept factually correct alternative explanations.
+- The expected answer is a reference, not the only
+  acceptable wording.
+- Do not penalize correct answers for being longer
+  or shorter than the expected answer.
+- Distinguish minor omissions from major errors.
+- Penalize false, contradictory, or misleading claims.
+- Evaluate the complete answer in context.
+- Never invent errors that are not present.
 
 SCORING RUBRIC:
 
-1 = Completely incorrect or irrelevant.
-2 = Mostly incorrect, with major factual problems.
-3 = Partially correct, but has important omissions
-    or errors.
-4 = Correct and relevant, with minor omissions.
 5 = Fully correct, relevant, and sufficiently complete.
+4 = Correct overall, with minor omissions.
+3 = Partially correct, with meaningful omissions or errors.
+2 = Mostly incorrect, with major factual errors.
+1 = Completely incorrect, irrelevant, or fundamentally wrong.
+
+CALIBRATION:
+- Correct answers expressed in different words must not
+  receive low scores merely due to wording differences.
+- Missing a minor detail should generally result in 4.
+- Missing essential information should generally result in 3.
+- A fundamentally wrong central claim should receive 1 or 2.
+- Do not award 5 when important information is missing.
 
 VERDICT:
-
 PASS = Score 4 or 5.
 FAIL = Score 1, 2, or 3.
 
 Return valid JSON only:
-
 {
-    "score": 1,
-    "reason": "Specific explanation of the score",
-    "verdict": "FAIL"
+    "score": 4,
+    "reason": "Specific explanation of the evaluation.",
+    "verdict": "PASS"
 }
 """
                 },
                 {
                     "role": "user",
                     "content": f"""
-Question:
-{question}
+Question: {question}
 
-Expected answer:
-{expected_answer}
+Expected answer: {expected_answer}
 
-Actual answer:
-{actual_answer}
+Actual answer: {actual_answer}
 """
                 }
             ],

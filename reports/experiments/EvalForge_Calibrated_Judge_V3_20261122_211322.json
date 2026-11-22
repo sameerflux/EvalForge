@@ -1,0 +1,36 @@
+{
+    "experiment_name": "EvalForge_Calibrated_Judge_V3",
+    "model": "openai/gpt-oss-20b",
+    "total_items": 3,
+    "passed": 2,
+    "failed": 1,
+    "average_token_f1": 0.5789473684210527,
+    "average_semantic_similarity": 0.45,
+    "average_judge_score": 3.3333333333333335,
+    "results": [
+        {
+            "question": "What is Python?",
+            "token_f1_score": 0.7368421052631579,
+            "semantic_similarity_score": 0.2,
+            "judge_score": 4,
+            "judge_reason": "The answer correctly identifies Python as a high-level programming language and mentions its readability, which is a notable feature. However, it omits the detail that Python is interpreted, which is a minor but relevant omission compared to the expected answer. Thus the answer is largely correct but slightly incomplete.",
+            "verdict": "PASS"
+        },
+        {
+            "question": "What is the capital of France?",
+            "token_f1_score": 1.0,
+            "semantic_similarity_score": 0.95,
+            "judge_score": 5,
+            "judge_reason": "The answer correctly identifies Paris as the capital of France, matching the expected answer and providing complete, factual information.",
+            "verdict": "PASS"
+        },
+        {
+            "question": "What is 2 + 2?",
+            "token_f1_score": 0.0,
+            "semantic_similarity_score": 0.2,
+            "judge_score": 1,
+            "judge_reason": "The answer 14 is factually incorrect for the arithmetic question 2 + 2, which equals 4.",
+            "verdict": "FAIL"
+        }
+    ]
+}

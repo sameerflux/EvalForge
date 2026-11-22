@@ -20,6 +20,8 @@ from evaluation.metrics.semantic_similarity import calculate_similarity
 from evaluation.judges.llm_judge import evaluate_answer
 
 
+from backend.routes.experiments import router as experiment_router
+
 app = FastAPI(
     title="EvalForge API",
     description="LLM Evaluation and Benchmarking Platform",
@@ -145,3 +147,6 @@ def unified_evaluation(request: UnifiedEvaluationRequest):
         "judge_reason": judge_result["reason"],
         "verdict": judge_result["verdict"]
     }
+
+
+app.include_router(experiment_router)
