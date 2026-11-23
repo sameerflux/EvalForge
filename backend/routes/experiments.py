@@ -1,4 +1,3 @@
-
 import os
 
 from fastapi import APIRouter, HTTPException
@@ -25,6 +24,43 @@ from evaluation.judges.llm_judge import evaluate_answer
 router = APIRouter()
 
 
+def generate_answer(client, question, model):
+    """Generate an answer to a question using Groq."""
+
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a helpful AI assistant. "
+                        "Answer the user's question clearly, accurately, "
+                        "and directly. Avoid unnecessary details."
+                    )
+                },
+                {
+                    "role": "user",
+                    "content": question
+                }
+            ],
+            temperature=0.2
+        )
+
+        answer = response.choices[0].message.content
+
+        if not answer or not answer.strip():
+            raise ValueError("The model returned an empty answer.")
+
+        return answer.strip()
+
+    except Exception as error:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Answer generation failed: {str(error)}"
+        )
+
+
 @router.post(
     "/api/experiments/run",
     response_model=ExperimentRunResponse
@@ -45,27 +81,41 @@ def run_experiment(request: ExperimentRunRequest):
 
     for item in request.items:
 
+        # Step 1: Generate or use the manually entered answer
+        if request.generate_answer:
+            actual_answer = generate_answer(
+                client=client,
+                question=item.question,
+                model=request.model
+            )
+        else:
+            actual_answer = item.actual_answer
+
+        # Step 2: Calculate evaluation metrics
         token_f1 = calculate_f1(
             item.expected_answer,
-            item.actual_answer
+            actual_answer
         )
 
         semantic_score = calculate_similarity(
             item.expected_answer,
-            item.actual_answer
+            actual_answer
         )
 
+        # Step 3: Evaluate using the LLM judge
         judge_result = evaluate_answer(
             client=client,
             question=item.question,
             expected_answer=item.expected_answer,
-            actual_answer=item.actual_answer,
+            actual_answer=actual_answer,
             model=request.model
         )
 
+        # Step 4: Store the result
         results.append(
             ExperimentItemResult(
                 question=item.question,
+                actual_answer=actual_answer,
                 token_f1_score=float(token_f1),
                 semantic_similarity_score=float(semantic_score),
                 judge_score=judge_result["score"],
@@ -130,7 +180,6 @@ def run_experiment(request: ExperimentRunRequest):
         )
 
     return response
-
 
 
 @router.get("/api/experiments")

@@ -1,4 +1,3 @@
-
 import os
 import sqlite3
 from pathlib import Path
@@ -21,6 +20,7 @@ def get_connection():
 
 def initialize_database():
     with get_connection() as connection:
+
         connection.execute("""
             CREATE TABLE IF NOT EXISTS experiments (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -46,19 +46,40 @@ def initialize_database():
                 judge_score INTEGER,
                 judge_reason TEXT,
                 verdict TEXT,
+                actual_answer TEXT,
                 FOREIGN KEY (experiment_id)
                     REFERENCES experiments(id)
                     ON DELETE CASCADE
             )
         """)
 
+        # Safely migrate existing databases.
+        columns = {
+            row["name"]
+            for row in connection.execute(
+                "PRAGMA table_info(experiment_results)"
+            ).fetchall()
+        }
+
+        if "actual_answer" not in columns:
+            connection.execute("""
+                ALTER TABLE experiment_results
+                ADD COLUMN actual_answer TEXT
+            """)
+
 
 def save_experiment(experiment):
     with get_connection() as connection:
+
         cursor = connection.execute("""
             INSERT INTO experiments (
-                experiment_name, model, total_items, passed, failed,
-                average_token_f1, average_semantic_similarity,
+                experiment_name,
+                model,
+                total_items,
+                passed,
+                failed,
+                average_token_f1,
+                average_semantic_similarity,
                 average_judge_score
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -78,11 +99,16 @@ def save_experiment(experiment):
         for result in experiment["results"]:
             connection.execute("""
                 INSERT INTO experiment_results (
-                    experiment_id, question, token_f1_score,
-                    semantic_similarity_score, judge_score,
-                    judge_reason, verdict
+                    experiment_id,
+                    question,
+                    token_f1_score,
+                    semantic_similarity_score,
+                    judge_score,
+                    judge_reason,
+                    verdict,
+                    actual_answer
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 experiment_id,
                 result["question"],
@@ -90,7 +116,8 @@ def save_experiment(experiment):
                 result["semantic_similarity_score"],
                 result["judge_score"],
                 result["judge_reason"],
-                result["verdict"]
+                result["verdict"],
+                result.get("actual_answer", "")
             ))
 
         return experiment_id
@@ -107,6 +134,7 @@ def get_all_experiments():
 
 def get_experiment_by_id(experiment_id):
     with get_connection() as connection:
+
         experiment = connection.execute("""
             SELECT * FROM experiments WHERE id = ?
         """, (experiment_id,)).fetchone()
@@ -122,6 +150,8 @@ def get_experiment_by_id(experiment_id):
             ORDER BY id
         """, (experiment_id,)).fetchall()
 
-        experiment["results"] = [dict(row) for row in results]
+        experiment["results"] = [
+            dict(row) for row in results
+        ]
 
         return experiment
