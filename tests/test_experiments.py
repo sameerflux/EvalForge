@@ -91,3 +91,62 @@ def test_experiment_empty_items():
     )
 
     assert response.status_code == 422
+
+
+def test_get_experiment_history():
+
+    mock_history = [
+        {
+            "id": 101,
+            "experiment_name": "History API Test"
+        }
+    ]
+
+    with patch(
+        "backend.routes.experiments.initialize_database"
+    ), patch(
+        "backend.routes.experiments.get_all_experiments",
+        return_value=mock_history
+    ):
+
+        response = client.get("/api/experiments")
+
+    assert response.status_code == 200
+    assert response.json() == mock_history
+
+
+def test_get_experiment_by_id():
+
+    mock_experiment = {
+        "id": 101,
+        "experiment_name": "History API Test",
+        "results": []
+    }
+
+    with patch(
+        "backend.routes.experiments.initialize_database"
+    ), patch(
+        "backend.routes.experiments.get_experiment_by_id",
+        return_value=mock_experiment
+    ):
+
+        response = client.get("/api/experiments/101")
+
+    assert response.status_code == 200
+    assert response.json()["id"] == 101
+    assert response.json()["experiment_name"] == "History API Test"
+
+
+def test_get_missing_experiment():
+
+    with patch(
+        "backend.routes.experiments.initialize_database"
+    ), patch(
+        "backend.routes.experiments.get_experiment_by_id",
+        return_value=None
+    ):
+
+        response = client.get("/api/experiments/99999")
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Experiment not found."
