@@ -1,3 +1,4 @@
+
 import os
 
 from fastapi import APIRouter, HTTPException
@@ -7,6 +8,13 @@ from backend.schemas.experiment import (
     ExperimentRunRequest,
     ExperimentRunResponse,
     ExperimentItemResult
+)
+
+from backend.database import (
+    initialize_database,
+    save_experiment,
+    get_all_experiments,
+    get_experiment_by_id
 )
 
 from evaluation.evaluation_engine import calculate_f1
@@ -94,7 +102,7 @@ def run_experiment(request: ExperimentRunRequest):
         if valid_judge_scores else None
     )
 
-    return ExperimentRunResponse(
+    response = ExperimentRunResponse(
         experiment_name=request.experiment_name,
         model=request.model,
         total_items=total,
@@ -105,3 +113,60 @@ def run_experiment(request: ExperimentRunRequest):
         average_judge_score=average_judge,
         results=results
     )
+
+    try:
+        initialize_database()
+
+        experiment_id = save_experiment(
+            response.model_dump(exclude={"experiment_id"})
+        )
+
+        response.experiment_id = experiment_id
+
+    except Exception as error:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to save experiment: {str(error)}"
+        )
+
+    return response
+
+
+
+@router.get("/api/experiments")
+def list_experiments():
+
+    try:
+        initialize_database()
+        return get_all_experiments()
+
+    except Exception as error:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to retrieve experiments: {str(error)}"
+        )
+
+
+@router.get("/api/experiments/{experiment_id}")
+def retrieve_experiment(experiment_id: int):
+
+    try:
+        initialize_database()
+        experiment = get_experiment_by_id(experiment_id)
+
+        if experiment is None:
+            raise HTTPException(
+                status_code=404,
+                detail="Experiment not found."
+            )
+
+        return experiment
+
+    except HTTPException:
+        raise
+
+    except Exception as error:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to retrieve experiment: {str(error)}"
+        )

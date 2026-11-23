@@ -1,3 +1,4 @@
+
 from pydantic import BaseModel, Field
 
 
@@ -27,6 +28,7 @@ class ExperimentItemResult(BaseModel):
 
 
 class ExperimentRunResponse(BaseModel):
+    experiment_id: int | None = None
     experiment_name: str
     model: str
     total_items: int

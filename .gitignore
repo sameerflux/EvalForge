@@ -41,3 +41,8 @@ build/
 *.bin
 *.safetensors
 *.onnx
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
